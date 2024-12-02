@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://by4yk2co0cyv3"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
+[ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/wall.tscn" id="1_nfebl"]
+[ext_resource type="PackedScene" uid="uid://cbrcdax58qkla" path="res://scenes/minion.tscn" id="2_i06yn"]
+[ext_resource type="PackedScene" uid="uid://c6jiqm8cs3d0o" path="res://scenes/ui/component_selector.tscn" id="2_sinrd"]
+[ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/enemy.tscn" id="3_m3n6m"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer")]
+script = ExtResource("1_l21ws")
+_componentSelectorScene = ExtResource("2_sinrd")
+_vBoxContainer = NodePath("Control/VBoxContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 162.0
+offset_top = 193.0
+offset_right = 162.0
+offset_bottom = 193.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -42.0
+offset_right = -126.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="wall" parent="." instance=ExtResource("1_nfebl")]
+position = Vector2(-21, 678)
+scale = Vector2(0.43, 15)
+
+[node name="wall2" parent="." instance=ExtResource("1_nfebl")]
+position = Vector2(1620, 419)
+scale = Vector2(0.43, 15)
+
+[node name="wall3" parent="." instance=ExtResource("1_nfebl")]
+position = Vector2(714, 919)
+rotation = 1.5708
+scale = Vector2(0.43, 20)
+
+[node name="wall4" parent="." instance=ExtResource("1_nfebl")]
+position = Vector2(894, -18)
+rotation = 1.5708
+scale = Vector2(0.43, 20)
+
+[node name="Minion" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(839, 353)
+
+[node name="Minion2" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(751, 343)
+
+[node name="Minion3" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(706, 407)
+
+[node name="Minion4" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(752, 478)
+
+[node name="Minion5" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(837, 472)
+
+[node name="Minion6" parent="." instance=ExtResource("2_i06yn")]
+position = Vector2(875, 415)
+
+[node name="Enemy" parent="." instance=ExtResource("3_m3n6m")]
+position = Vector2(636, 763)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_m3n6m")]
+position = Vector2(1299, 175)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_m3n6m")]
+position = Vector2(250, 136)

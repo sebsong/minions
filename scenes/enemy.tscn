@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkkkbcmwgltey"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_1lmc1"]
+[ext_resource type="Texture2D" uid="uid://bbb1sjykhw0rb" path="res://icon.svg" id="1_4g35n"]
+[ext_resource type="PackedScene" uid="uid://cicxxe885qgxc" path="res://scenes/health_bar.tscn" id="2_cwt2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq5ul"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_healthBar") groups=["enemies"]]
+scale = Vector2(0.5, 0.5)
+motion_mode = 1
+script = ExtResource("1_1lmc1")
+_healthBar = NodePath("HealthBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jq5ul")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_jq5ul")
+debug_color = Color(0.97362, 0, 0.432687, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.932852, 0.0677829, 0, 1)
+texture = ExtResource("1_4g35n")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_cwt2e")]
+position = Vector2(0, 75)

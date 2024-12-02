@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://247ib2kk6obl"]
+
+[ext_resource type="Script" path="res://scripts/components/movement/RandomMovement.cs" id="1_dg51a"]
+
+[node name="RandomMovement" type="Node2D" node_paths=PackedStringArray("_velocityChangeTimer")]
+script = ExtResource("1_dg51a")
+_velocityChangeTimer = NodePath("VelocityChangeTimer")
+_minTimerDuration = 0.5
+_maxTimerDuration = 3.0
+
+[node name="VelocityChangeTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="VelocityChangeTimer" to="." method="OnVelocityChangeTimerTimeout"]

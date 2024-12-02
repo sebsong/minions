@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://btqxr8kj6npg5"]
+
+[ext_resource type="Script" path="res://scripts/components/attack/AreaAttack.cs" id="1_capp6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2akq"]
+
+[node name="AreaAttack" type="Node2D" node_paths=PackedStringArray("_attackTimer", "_attackActiveTimer", "_hitBoxCollisionShape")]
+script = ExtResource("1_capp6")
+_attackTimer = NodePath("AttackTimer")
+_attackActiveTimer = NodePath("AttackActiveTimer")
+_hitBoxCollisionShape = NodePath("HitBox/CollisionShape2D")
+_hitBoxActiveSeconds = 0.25
+_hitBoxRadius = 400.0
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_y2akq")
+disabled = true
+debug_color = Color(0.558505, 0, 0.0395637, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="AttackActiveTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="HitBox" to="." method="OnHitBoxEntered"]
+[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
+[connection signal="timeout" from="AttackActiveTimer" to="." method="OnAttackHitBoxActiveTimerTimeout"]
