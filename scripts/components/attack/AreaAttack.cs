@@ -1,7 +1,7 @@
 using Godot;
-using prototype_minions.scripts.components.core;
+using minions.scripts.components.core;
 
-namespace prototype_minions.scripts.components.attack;
+namespace minions.scripts.components.attack;
 
 public partial class AreaAttack : AttackComponent
 {

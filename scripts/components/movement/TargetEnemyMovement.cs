@@ -1,8 +1,8 @@
 using Godot;
 using Godot.Collections;
-using prototype_minions.scripts.components.core;
+using minions.scripts.components.core;
 
-namespace prototype_minions.scripts.components.movement;
+namespace minions.scripts.components.movement;
 
 public partial class TargetEnemyMovement : MovementComponent
 {

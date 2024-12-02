@@ -1,8 +1,8 @@
 using Godot;
 using Godot.Collections;
-using prototype_minions.scripts.components.core;
+using minions.scripts.components.core;
 
-namespace prototype_minions.scripts.components.movement;
+namespace minions.scripts.components.movement;
 
 public partial class FollowAllyMovement : MovementComponent
 {
@@ -10,7 +10,7 @@ public partial class FollowAllyMovement : MovementComponent
 
     [Export] private float _followDistance;
 
-    private Minion _allyTarget;
+    private minions.scripts.Minion _allyTarget;
 
     public override void _Ready()
     {
@@ -48,7 +48,7 @@ public partial class FollowAllyMovement : MovementComponent
         }
         else
         {
-            _allyTarget = allMinions.PickRandom() as Minion;
+            _allyTarget = allMinions.PickRandom() as minions.scripts.Minion;
         }
     }
 }

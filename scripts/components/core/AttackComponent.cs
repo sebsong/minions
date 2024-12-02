@@ -1,8 +1,8 @@
 using Godot;
 
-namespace prototype_minions.scripts.components.core;
+namespace minions.scripts.components.core;
 
-public abstract partial class AttackComponent : Component
+public abstract partial class AttackComponent : minions.scripts.components.core.Component
 {
     [Export] internal int Damage = ComponentUtils.DefaultDamage;
     [Export] internal float AttackCooldown = ComponentUtils.DefaultAttackCooldown;

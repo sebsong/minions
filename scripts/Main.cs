@@ -1,8 +1,8 @@
 using Godot;
 using Godot.Collections;
-using prototype_minions.scripts.ui;
+using minions.scripts.ui;
 
-namespace prototype_minions.scripts;
+namespace minions.scripts;
 
 public partial class Main : Node2D
 {

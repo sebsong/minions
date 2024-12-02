@@ -1,14 +1,14 @@
 using Godot;
-using prototype_minions.scripts.components.core;
+using minions.scripts.components.core;
 
-namespace prototype_minions.scripts.components.attack;
+namespace minions.scripts.components.attack;
 
 public partial class ContactAttack : AttackComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.ContactAttack;
 
     private double _timeSinceLastAttack;
-    private Enemy _lastEnemyHit;
+    private minions.scripts.Enemy _lastEnemyHit;
 
     public override void Attack(double delta)
     {
@@ -17,7 +17,7 @@ public partial class ContactAttack : AttackComponent
 
     public override void OnCollision(KinematicCollision2D collision)
     {
-        if (collision.GetCollider() is Enemy enemy)
+        if (collision.GetCollider() is minions.scripts.Enemy enemy)
         {
             if (enemy == _lastEnemyHit && _timeSinceLastAttack < AttackCooldown)
             {

@@ -1,16 +1,15 @@
 using System;
-using System.Linq;
 using Godot;
-using prototype_minions.scripts.components.core;
+using minions.scripts.components.core;
 
-namespace prototype_minions.scripts.ui;
+namespace minions.scripts.ui;
 
 public partial class ComponentSelector : Control
 {
     [Export] private OptionButton _movementOptions;
     [Export] private OptionButton _attackOptions;
 
-    private Minion _minion;
+    private minions.scripts.Minion _minion;
 
     public override void _Ready()
     {
@@ -19,7 +18,7 @@ public partial class ComponentSelector : Control
         _registerOptions();
     }
 
-    public void RegisterMinion(Minion minion)
+    public void RegisterMinion(minions.scripts.Minion minion)
     {
         _minion = minion;
         UpdateMinionMovementComponent(_movementOptions.Selected);
