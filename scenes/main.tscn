@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://by4yk2co0cyv3"]
+[gd_scene load_steps=7 format=3 uid="uid://by4yk2co0cyv3"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/wall.tscn" id="1_nfebl"]
 [ext_resource type="PackedScene" uid="uid://cbrcdax58qkla" path="res://scenes/minion.tscn" id="2_i06yn"]
 [ext_resource type="PackedScene" uid="uid://c6jiqm8cs3d0o" path="res://scenes/ui/component_selector.tscn" id="2_sinrd"]
 [ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/enemy.tscn" id="3_m3n6m"]
+[ext_resource type="PackedScene" uid="uid://dpo16bk8er14u" path="res://scenes/player.tscn" id="6_u84ty"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer")]
 script = ExtResource("1_l21ws")
@@ -64,15 +65,6 @@ position = Vector2(751, 343)
 [node name="Minion3" parent="." instance=ExtResource("2_i06yn")]
 position = Vector2(706, 407)
 
-[node name="Minion4" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(752, 478)
-
-[node name="Minion5" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(837, 472)
-
-[node name="Minion6" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(875, 415)
-
 [node name="Enemy" parent="." instance=ExtResource("3_m3n6m")]
 position = Vector2(636, 763)
 
@@ -81,3 +73,6 @@ position = Vector2(1299, 175)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_m3n6m")]
 position = Vector2(250, 136)
+
+[node name="Player" parent="." instance=ExtResource("6_u84ty")]
+position = Vector2(525, 368)
