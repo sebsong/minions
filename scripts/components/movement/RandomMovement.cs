@@ -10,41 +10,56 @@ public partial class RandomMovement : MovementComponent
     [Export] private Timer _velocityChangeTimer;
     [Export] private float _minTimerDuration;
     [Export] private float _maxTimerDuration;
+    [Export] private float _minDestinationDist;
+    [Export] private float _maxDestinationDist;
 
-    private Vector2 _currentVelocity;
     private RandomNumberGenerator _rng = new();
+    private Vector2 _currentVelocity;
+    private Vector2 _currentDestination;
 
     public override void _Ready()
     {
         base._Ready();
-        UpdateVelocity();
+        _currentVelocity = Vector2.Up * Speed;
+        UpdateDestination();
     }
 
-    public override Vector2 GetVelocity()
+    public override Vector2 GetVelocity(double delta)
     {
+        if (GetComponentOwner().GlobalPosition.DistanceTo(_currentDestination) < 1)
+        {
+            UpdateDestination();
+        }
+
+        TurnTowardDestination(delta);
         return _currentVelocity;
     }
 
     public override void OnCollision(KinematicCollision2D collision)
     {
-        UpdateVelocity();
+        UpdateDestination();
     }
 
-    private void UpdateVelocity()
+    private void TurnTowardDestination(double delta)
     {
-        _currentVelocity = GenerateRandomVelocity();
+        float angleToDestination = GetComponentOwner().GetAngleTo(_currentDestination);
+        float amountToTurn = Mathf.Min(angleToDestination, TurnSpeed / 180 * Mathf.Pi);
+        _currentVelocity = _currentVelocity.Rotated((float)(amountToTurn * delta));
     }
 
-    private Vector2 GenerateRandomVelocity()
+    private void UpdateDestination()
     {
         float x = _rng.RandfRange(-1f, 1f);
         float y = _rng.RandfRange(-1f, 1f);
-        return new Vector2(x, y).Normalized() * Speed;
+        float distance = _rng.RandfRange(_minDestinationDist, _maxDestinationDist);
+        Vector2 offset = new Vector2(x, y).Normalized() * distance;
+        Vector2 ownerPosition = GetComponentOwner().GlobalPosition;
+        _currentDestination = ownerPosition + offset;
     }
 
     private void OnVelocityChangeTimerTimeout()
     {
-        UpdateVelocity();
+        UpdateDestination();
         _velocityChangeTimer.WaitTime = _rng.RandfRange(_minTimerDuration, _maxTimerDuration);
     }
 

@@ -5,7 +5,7 @@ using minions.scripts.components.core;
 public partial class Player : CharacterBody2D
 {
 	[Export] private float _speed = ComponentUtils.DefaultMovementSpeed;
-	[Export] private float _turnSpeed;
+	[Export] private float _turnSpeed = ComponentUtils.DefaultTurnSpeed;
 
 	public override void _Ready()
 	{
@@ -32,6 +32,6 @@ public partial class Player : CharacterBody2D
 			turnAmount = _turnSpeed;
 		}
 
-		Velocity = Velocity.Rotated((float)(turnAmount / 360 * Math.PI));
+		Velocity = Velocity.Rotated(turnAmount / 180 * Mathf.Pi);
 	}
 }

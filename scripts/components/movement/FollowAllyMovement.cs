@@ -10,7 +10,7 @@ public partial class FollowAllyMovement : MovementComponent
 
     [Export] private float _followDistance;
 
-    private minions.scripts.Minion _allyTarget;
+    private Minion _allyTarget;
 
     public override void _Ready()
     {
@@ -18,7 +18,7 @@ public partial class FollowAllyMovement : MovementComponent
         UpdateAllyTarget();
     }
 
-    public override Vector2 GetVelocity()
+    public override Vector2 GetVelocity(double delta)
     {
         if (!IsInstanceValid(_allyTarget))
         {

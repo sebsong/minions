@@ -103,7 +103,6 @@ scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_cpvl1")
 _speed = 150.0
-_turnSpeed = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)

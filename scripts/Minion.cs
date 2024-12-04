@@ -15,10 +15,15 @@ public partial class Minion : CharacterBody2D
         SetAttackComponent(ComponentUtils.ComponentType.ContactAttack);
     }
 
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        Velocity = _movementComponent.GetVelocity(delta);
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        Velocity = _movementComponent.GetVelocity();
         LookAt(GlobalPosition + Velocity);
         _attackComponent.Attack(delta);
         if (MoveAndSlide())
