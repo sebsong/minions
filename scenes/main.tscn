@@ -60,10 +60,10 @@ scale = Vector2(0.43, 20)
 position = Vector2(839, 353)
 
 [node name="Minion2" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(751, 343)
+position = Vector2(766, 420)
 
 [node name="Minion3" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(706, 407)
+position = Vector2(866, 429)
 
 [node name="Enemy" parent="." instance=ExtResource("3_m3n6m")]
 position = Vector2(636, 763)

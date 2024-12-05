@@ -16,11 +16,11 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
         LookAt(GlobalPosition + Velocity);
-        HandleTurning();
+        HandleTurning(delta);
 		MoveAndSlide();
 	}
 
-	private void HandleTurning()
+	private void HandleTurning(double delta)
 	{
 		float turnAmount = 0;
 		if (Input.IsActionPressed("left"))
@@ -32,6 +32,6 @@ public partial class Player : CharacterBody2D
 			turnAmount = _turnSpeed;
 		}
 
-		Velocity = Velocity.Rotated(turnAmount / 180 * Mathf.Pi);
+		Velocity = Velocity.Rotated((float)(turnAmount / 180 * Mathf.Pi * delta));
 	}
 }

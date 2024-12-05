@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using minions.scripts.components.core;
 
@@ -43,8 +44,11 @@ public partial class RandomMovement : MovementComponent
     private void TurnTowardDestination(double delta)
     {
         float angleToDestination = GetComponentOwner().GetAngleTo(_currentDestination);
-        float amountToTurn = Mathf.Min(angleToDestination, TurnSpeed / 180 * Mathf.Pi);
-        _currentVelocity = _currentVelocity.Rotated((float)(amountToTurn * delta));
+        float amountToTurn = (float)Mathf.Min(
+            Mathf.Abs(angleToDestination),
+            Mathf.Abs(TurnSpeed / 180 * Mathf.Pi * delta)
+        );
+        _currentVelocity = _currentVelocity.Rotated(Math.Sign(angleToDestination) * amountToTurn);
     }
 
     private void UpdateDestination()
@@ -62,5 +66,4 @@ public partial class RandomMovement : MovementComponent
         UpdateDestination();
         _velocityChangeTimer.WaitTime = _rng.RandfRange(_minTimerDuration, _maxTimerDuration);
     }
-
 }

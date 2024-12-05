@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://scripts/components/movement/RandomMovement.cs" id="1_dg51a"]
 
 [node name="RandomMovement" type="Node2D" node_paths=PackedStringArray("_velocityChangeTimer")]
+top_level = true
 script = ExtResource("1_dg51a")
 _velocityChangeTimer = NodePath("VelocityChangeTimer")
-_minTimerDuration = 2.0
-_maxTimerDuration = 4.0
+_minTimerDuration = 1.0
+_maxTimerDuration = 3.0
 _minDestinationDist = 50.0
 _maxDestinationDist = 500.0
 

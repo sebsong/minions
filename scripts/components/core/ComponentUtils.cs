@@ -23,7 +23,7 @@ public static class ComponentUtils
 
     /* Movement Defaults */
     public const float DefaultMovementSpeed = 100f;
-    public const float DefaultTurnSpeed = 2f;
+    public const float DefaultTurnSpeed = 120f;
 
     /* Attack Defaults */
     public const int DefaultDamage = 1;
