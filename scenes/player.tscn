@@ -98,10 +98,11 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_bulletSpawn")]
 scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_cpvl1")
+_bulletSpawn = NodePath("BulletSpawn")
 _speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -116,3 +117,6 @@ sprite_frames = SubResource("SpriteFrames_r7rlu")
 autoplay = "default"
 frame = 5
 frame_progress = 0.406724
+
+[node name="BulletSpawn" type="Node2D" parent="."]
+position = Vector2(72, -4)
