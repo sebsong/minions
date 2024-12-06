@@ -106,6 +106,7 @@ _bulletSpawnLeft = NodePath("BulletSpawnLeft")
 _bulletSpawnRight = NodePath("BulletSpawnRight")
 _shootCooldownTimer = NodePath("ShootCooldownTimer")
 _speed = 150.0
+_maxBulletSpread = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
@@ -121,10 +122,10 @@ frame = 5
 frame_progress = 0.406724
 
 [node name="BulletSpawnLeft" type="Node2D" parent="."]
-position = Vector2(52, -20)
+position = Vector2(52, -36)
 
 [node name="BulletSpawnRight" type="Node2D" parent="."]
-position = Vector2(52, 12)
+position = Vector2(52, 28)
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
 wait_time = 0.15

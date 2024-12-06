@@ -11,7 +11,9 @@ public partial class Player : CharacterBody2D
 
     [Export] private float _speed = ComponentUtils.DefaultMovementSpeed;
     [Export] private float _turnSpeed = ComponentUtils.DefaultTurnSpeed;
+    [Export] private float _maxBulletSpread;
 
+    private RandomNumberGenerator _rng = new();
     private bool _canShoot = true;
     private Node2D _currentBulletSpawn;
 
@@ -58,7 +60,8 @@ public partial class Player : CharacterBody2D
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();
             bullet.Position = _currentBulletSpawn.GlobalPosition;
-            bullet.Rotation = _currentBulletSpawn.GlobalRotation;
+            float randomBulletSpread = _rng.RandfRange(-_maxBulletSpread, _maxBulletSpread);
+            bullet.Rotation = _currentBulletSpawn.GlobalRotation + randomBulletSpread;
             GetTree().CurrentScene.AddChild(bullet);
             _canShoot = false;
             _currentBulletSpawn = _currentBulletSpawn == _bulletSpawnLeft ? _bulletSpawnRight : _bulletSpawnLeft;
