@@ -98,11 +98,13 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_bulletSpawn")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_bulletSpawnLeft", "_bulletSpawnRight", "_shootCooldownTimer")]
 scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_cpvl1")
-_bulletSpawn = NodePath("BulletSpawn")
+_bulletSpawnLeft = NodePath("BulletSpawnLeft")
+_bulletSpawnRight = NodePath("BulletSpawnRight")
+_shootCooldownTimer = NodePath("ShootCooldownTimer")
 _speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -118,5 +120,11 @@ autoplay = "default"
 frame = 5
 frame_progress = 0.406724
 
-[node name="BulletSpawn" type="Node2D" parent="."]
-position = Vector2(72, -4)
+[node name="BulletSpawnLeft" type="Node2D" parent="."]
+position = Vector2(52, -20)
+
+[node name="BulletSpawnRight" type="Node2D" parent="."]
+position = Vector2(52, 12)
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]
+wait_time = 0.15
