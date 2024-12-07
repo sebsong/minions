@@ -10,14 +10,14 @@ public static class ComponentUtils
     private const string AttackPath = ComponentsPath + "/attack";
 
     /* Movement Scenes */
+    private static readonly PackedScene PlayerMovementScene = LoadScene(MovementPath, "player_movement.tscn");
     private static readonly PackedScene RandomMovementScene = LoadScene(MovementPath, "random_movement.tscn");
-
     private static readonly PackedScene
         TargetEnemyMovementScene = LoadScene(MovementPath, "target_enemy_movement.tscn");
-
     private static readonly PackedScene FollowALlyMovementScene = LoadScene(MovementPath, "follow_ally_movement.tscn");
 
     /* Attack Scenes */
+    private static readonly PackedScene PlayerAttackScene = LoadScene(AttackPath, "player_attack.tscn");
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
     private static readonly PackedScene AreaAttackScene = LoadScene(AttackPath, "area_attack.tscn");
 
@@ -32,17 +32,20 @@ public static class ComponentUtils
     public enum ComponentType
     {
         /** Movement Component Types **/
+        PlayerMovement,
         RandomMovement,
         TargetEnemyMovement,
         FollowAllyMovement,
 
         /** Attack Component Types **/
+        PlayerAttack,
         ContactAttack,
         AreaAttack,
     }
 
     public static readonly List<ComponentType> MovementComponentTypes = new()
     {
+        ComponentType.PlayerMovement,
         ComponentType.RandomMovement,
         ComponentType.TargetEnemyMovement,
         ComponentType.FollowAllyMovement,
@@ -50,18 +53,21 @@ public static class ComponentUtils
 
     public static readonly List<ComponentType> AttackComponentTypes = new()
     {
+        ComponentType.PlayerAttack,
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
     };
 
-    private static readonly Godot.Collections.Dictionary<ComponentType, PackedScene> TypeToScene = new()
+    private static readonly Dictionary<ComponentType, PackedScene> TypeToScene = new()
     {
         // Movement Component Types
+        { ComponentType.PlayerMovement, PlayerMovementScene },
         { ComponentType.RandomMovement, RandomMovementScene },
         { ComponentType.TargetEnemyMovement, TargetEnemyMovementScene },
         { ComponentType.FollowAllyMovement, FollowALlyMovementScene },
 
         // Attack Component Types
+        { ComponentType.PlayerAttack, PlayerAttackScene },
         { ComponentType.ContactAttack, ContactAttackScene },
         { ComponentType.AreaAttack, AreaAttackScene },
     };

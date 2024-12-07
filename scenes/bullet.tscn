@@ -7,7 +7,7 @@
 size = Vector2(6.9, 2.8)
 
 [node name="Bullet" type="Node2D"]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_md51j")
 _speed = 750.0
 

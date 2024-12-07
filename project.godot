@@ -29,6 +29,7 @@ project/assembly_name="minions"
 
 enemies=""
 minions=""
+bulletSpawns=""
 
 [input]
 

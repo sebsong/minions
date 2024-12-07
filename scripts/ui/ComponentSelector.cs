@@ -46,7 +46,7 @@ public partial class ComponentSelector : Control
             _attackOptions.AddItem(Enum.GetName(componentType), (int)componentType);
         }
 
-        _movementOptions.Selected = 0;
-        _attackOptions.Selected = 0;
+        _movementOptions.Selected = 1;
+        _attackOptions.Selected = 1;
     }
 }

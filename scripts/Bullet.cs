@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace minions.scripts;
 
 public partial class Bullet : Node2D
 {

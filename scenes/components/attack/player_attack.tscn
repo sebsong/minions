@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0qsir8a2thac"]
+
+[ext_resource type="Script" path="res://scripts/components/attack/PlayerAttack.cs" id="1_kjd0s"]
+
+[node name="PlayerAttack" type="Node2D" node_paths=PackedStringArray("_shootCooldownTimer")]
+script = ExtResource("1_kjd0s")
+_shootCooldownTimer = NodePath("ShootCooldownTimer")
+_maxBulletSpread = 0.1
+AttackCooldown = 0.15
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm8a6ga1af344"]
+
+[ext_resource type="Script" path="res://scripts/components/movement/PlayerMovement.cs" id="1_51b0q"]
+
+[node name="PlayerMovement" type="Node2D"]
+script = ExtResource("1_51b0q")
+Speed = 150.0
+TurnSpeed = 150.0
