@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpo16bk8er14u"]
+[gd_scene load_steps=18 format=3 uid="uid://dpo16bk8er14u"]
 
 [ext_resource type="Script" path="res://scenes/Player.cs" id="1_cpvl1"]
 [ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_fiwlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]
-size = Vector2(496, 768)
+size = Vector2(128, 768)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyeox"]
+size = Vector2(128, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rqnf"]
 atlas = ExtResource("2_fiwlp")
@@ -103,10 +106,14 @@ scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_cpvl1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
+[node name="WingCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 0)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_3scxi")
+
+[node name="BodyCollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_uyeox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
