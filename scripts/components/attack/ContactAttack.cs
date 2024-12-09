@@ -23,7 +23,7 @@ public partial class ContactAttack : AttackComponent
             {
                 return;
             }
-            enemy.TakeDamage(Damage);
+            enemy.TakeDamage(AttackDamage);
             _lastEnemyHit = enemy;
             _timeSinceLastAttack = 0;
         }

@@ -9,5 +9,6 @@ public partial class Player : ComponentControlledBody
         base._Ready();
         SetMovementComponent(ComponentUtils.ComponentType.PlayerMovement);
         SetAttackComponent(ComponentUtils.ComponentType.PlayerAttack);
+        SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
     }
 }

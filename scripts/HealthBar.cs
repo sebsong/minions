@@ -10,6 +10,7 @@ public partial class HealthBar : Node2D
     public void SetMaxHealth(int maxHealth)
     {
         _progressBar.MaxValue = maxHealth;
+        _progressBar.Value = maxHealth;
     }
 
     public void Lower(int amount)

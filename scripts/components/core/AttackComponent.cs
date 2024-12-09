@@ -2,10 +2,11 @@ using Godot;
 
 namespace minions.scripts.components.core;
 
-public abstract partial class AttackComponent : minions.scripts.components.core.Component
+public abstract partial class AttackComponent : Component
 {
-    [Export] internal int Damage = ComponentUtils.DefaultDamage;
+    [Export] internal int AttackDamage = ComponentUtils.DefaultAttackDamage;
     [Export] internal float AttackCooldown = ComponentUtils.DefaultAttackCooldown;
+    [Export] internal float AttackSpeed = ComponentUtils.DefaultAttackSpeed;
 
     public abstract void Attack(double delta);
 

@@ -33,7 +33,7 @@ public partial class AreaAttack : AttackComponent
     {
         if (body is Enemy enemy)
         {
-            enemy.TakeDamage(Damage);
+            enemy.TakeDamage(AttackDamage);
         }
     }
 

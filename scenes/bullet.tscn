@@ -6,14 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78e11"]
 size = Vector2(6.9, 2.8)
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" node_paths=PackedStringArray("_hitBox")]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_md51j")
-_speed = 750.0
+_hitBox = NodePath("HitBox")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0.05, -2.38419e-08)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_78e11")

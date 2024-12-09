@@ -12,6 +12,7 @@ public partial class PlayerAttack : AttackComponent
     [Export] private PackedScene _bulletScene = ResourceLoader.Load<PackedScene>("res://scenes/Bullet.tscn");
     [Export] private Timer _shootCooldownTimer;
 
+    [Export] private float _bulletSpeed;
     [Export] private float _maxBulletSpread;
 
     private RandomNumberGenerator _rng = new();
@@ -52,6 +53,8 @@ public partial class PlayerAttack : AttackComponent
         if (Input.IsActionPressed("shoot") && _canShoot && _currentBulletSpawnIndex != -1)
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();
+            bullet.Speed = AttackSpeed;
+            bullet.Damage = AttackDamage;
             Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];
             bullet.Position = bulletSpawn.GlobalPosition;
             float randomBulletSpread = _rng.RandfRange(-_maxBulletSpread, _maxBulletSpread);

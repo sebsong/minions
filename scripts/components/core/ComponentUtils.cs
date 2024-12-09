@@ -8,6 +8,7 @@ public static class ComponentUtils
     private const string ComponentsPath = "res://scenes/components";
     private const string MovementPath = ComponentsPath + "/movement";
     private const string AttackPath = ComponentsPath + "/attack";
+    private const string DefensePath = ComponentsPath + "/defense";
 
     /* Movement Scenes */
     private static readonly PackedScene PlayerMovementScene = LoadScene(MovementPath, "player_movement.tscn");
@@ -21,13 +22,20 @@ public static class ComponentUtils
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
     private static readonly PackedScene AreaAttackScene = LoadScene(AttackPath, "area_attack.tscn");
 
+    /* Defense Scenes */
+    private static readonly PackedScene BasicDefenseScene = LoadScene(DefensePath, "basic_defense.tscn");
+
     /* Movement Defaults */
     public const float DefaultMovementSpeed = 100f;
     public const float DefaultTurnSpeed = 120f;
 
     /* Attack Defaults */
-    public const int DefaultDamage = 1;
+    public const int DefaultAttackDamage = 1;
     public const float DefaultAttackCooldown = 1f;
+    public const float DefaultAttackSpeed = 750f;
+
+    /* Defense Defaults */
+    public const int DefaultMaxHealth = 10;
 
     public enum ComponentType
     {
@@ -41,6 +49,9 @@ public static class ComponentUtils
         PlayerAttack,
         ContactAttack,
         AreaAttack,
+
+        /** Defense Component Types **/
+        BasicDefense,
     }
 
     public static readonly List<ComponentType> MovementComponentTypes = new()
@@ -58,6 +69,10 @@ public static class ComponentUtils
         ComponentType.AreaAttack,
     };
 
+    public static readonly List<ComponentType> DefenseComponentTypes = new()
+    {
+    };
+
     private static readonly Dictionary<ComponentType, PackedScene> TypeToScene = new()
     {
         // Movement Component Types
@@ -70,6 +85,9 @@ public static class ComponentUtils
         { ComponentType.PlayerAttack, PlayerAttackScene },
         { ComponentType.ContactAttack, ContactAttackScene },
         { ComponentType.AreaAttack, AreaAttackScene },
+
+        // Defense Component Types
+        { ComponentType.BasicDefense, BasicDefenseScene },
     };
 
     public static T AttachComponent<T>(Node2D owner, ComponentType componentType) where T : Component
