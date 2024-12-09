@@ -8,7 +8,7 @@ public partial class ContactAttack : AttackComponent
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.ContactAttack;
 
     private double _timeSinceLastAttack;
-    private minions.scripts.Enemy _lastEnemyHit;
+    private IDamageable _lastDamageableHit;
 
     public override void Attack(double delta)
     {
@@ -17,14 +17,14 @@ public partial class ContactAttack : AttackComponent
 
     public override void OnCollision(KinematicCollision2D collision)
     {
-        if (collision.GetCollider() is minions.scripts.Enemy enemy)
+        if (collision.GetCollider() is IDamageable damageable)
         {
-            if (enemy == _lastEnemyHit && _timeSinceLastAttack < AttackCooldown)
+            if (damageable == _lastDamageableHit && _timeSinceLastAttack < AttackCooldown)
             {
                 return;
             }
-            enemy.TakeDamage(AttackDamage);
-            _lastEnemyHit = enemy;
+            damageable.TakeDamage(AttackDamage);
+            _lastDamageableHit = damageable;
             _timeSinceLastAttack = 0;
         }
     }

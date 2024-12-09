@@ -31,9 +31,9 @@ public partial class AreaAttack : AttackComponent
 
     private void OnHitBoxEntered(Node2D body)
     {
-        if (body is Enemy enemy)
+        if (body is IDamageable damageable)
         {
-            enemy.TakeDamage(AttackDamage);
+            damageable.TakeDamage(AttackDamage);
         }
     }
 
