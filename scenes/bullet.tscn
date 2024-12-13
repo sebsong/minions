@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc7y42uclg8ra"]
+[gd_scene load_steps=7 format=3 uid="uid://bc7y42uclg8ra"]
 
 [ext_resource type="Texture2D" uid="uid://oc5sxp33aphb" path="res://art/bullet.png" id="1_k2ru4"]
 [ext_resource type="Script" path="res://scripts/Bullet.cs" id="1_md51j"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78e11"]
 size = Vector2(6.9, 2.8)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xc6qg"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b802f"]
 particle_flag_disable_z = true
@@ -18,6 +24,8 @@ angular_velocity_max = 100.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="Bullet" type="Node2D" node_paths=PackedStringArray("_hitBox", "_bulletSprite", "_bulletExplostion")]
 scale = Vector2(1.5, 1.5)
@@ -37,10 +45,11 @@ rotation = 1.5708
 texture = ExtResource("1_k2ru4")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xc6qg")
 position = Vector2(4, 0)
 scale = Vector2(0.05, 0.05)
 emitting = false
-amount = 50
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_b802f")
 texture = ExtResource("3_s5jd8")
 lifetime = 2.0
