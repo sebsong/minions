@@ -6,6 +6,8 @@ namespace minions.scripts;
 public partial class Bullet : Node2D
 {
 	[Export] private Area2D _hitBox;
+	[Export] private Sprite2D _bulletSprite;
+	[Export] private GpuParticles2D _bulletExplostion;
 
 	[Export] public float Speed = ComponentUtils.DefaultAttackSpeed;
 	[Export] public int Damage = ComponentUtils.DefaultAttackDamage;
@@ -28,6 +30,13 @@ public partial class Bullet : Node2D
 		if (body is IDamageable damageable)
 		{
 			damageable.TakeDamage(Damage);
+			Explode();
 		}
+	}
+
+	private void Explode()
+	{
+		_bulletSprite.Hide();
+		_bulletExplostion.Emitting = true;
 	}
 }
