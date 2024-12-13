@@ -10,6 +10,6 @@ public partial class Enemy : ComponentControlledBody
         base._Ready();
         SetMovementComponent(ComponentUtils.ComponentType.RandomMovement);
         SetAttackComponent(ComponentUtils.ComponentType.ContactAttack);
-        SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
+        SetDefenseComponent(ComponentUtils.ComponentType.InvincibleDefense);
     }
 }

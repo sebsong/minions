@@ -24,6 +24,7 @@ public static class ComponentUtils
 
     /* Defense Scenes */
     private static readonly PackedScene BasicDefenseScene = LoadScene(DefensePath, "basic_defense.tscn");
+    private static readonly PackedScene InvincibleDefenseScene = LoadScene(DefensePath, "invincible_defense.tscn");
 
     /* Movement Defaults */
     public const float DefaultMovementSpeed = 100f;
@@ -52,6 +53,7 @@ public static class ComponentUtils
 
         /** Defense Component Types **/
         BasicDefense,
+        InvincibleDefense,
     }
 
     public static readonly List<ComponentType> MovementComponentTypes = new()
@@ -71,6 +73,8 @@ public static class ComponentUtils
 
     public static readonly List<ComponentType> DefenseComponentTypes = new()
     {
+        ComponentType.BasicDefense,
+        ComponentType.InvincibleDefense
     };
 
     private static readonly Dictionary<ComponentType, PackedScene> TypeToScene = new()
@@ -88,6 +92,7 @@ public static class ComponentUtils
 
         // Defense Component Types
         { ComponentType.BasicDefense, BasicDefenseScene },
+        { ComponentType.InvincibleDefense, InvincibleDefenseScene },
     };
 
     public static T AttachComponent<T>(Node2D owner, ComponentType componentType) where T : Component
