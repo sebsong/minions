@@ -9,6 +9,8 @@ public partial class Main : Node2D
     [Export] private PackedScene _componentSelectorScene;
     [Export] private VBoxContainer _vBoxContainer;
 
+    [Export] private GpuParticles2D _cloudParticles;
+
     public override void _Ready()
     {
         base._Ready();
@@ -21,6 +23,10 @@ public partial class Main : Node2D
             _vBoxContainer.AddChild(selector);
             selector.RegisterMinion(minion);
         }
+
+        _cloudParticles.SpeedScale = 100;
+        Tween tween = GetTree().CreateTween();
+        tween.TweenProperty(_cloudParticles, "speed_scale", 1, 5f);
     }
 
     public override void _Process(double delta)

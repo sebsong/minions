@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://by4yk2co0cyv3"]
+[gd_scene load_steps=10 format=3 uid="uid://by4yk2co0cyv3"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/wall.tscn" id="1_nfebl"]
@@ -6,11 +6,25 @@
 [ext_resource type="PackedScene" uid="uid://c6jiqm8cs3d0o" path="res://scenes/ui/component_selector.tscn" id="2_sinrd"]
 [ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/enemy.tscn" id="3_m3n6m"]
 [ext_resource type="PackedScene" uid="uid://dpo16bk8er14u" path="res://scenes/player.tscn" id="6_u84ty"]
+[ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="7_w6sks"]
+[ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="8_k78y2"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k5jj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 500, 1)
+spread = 0.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 6.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer", "_cloudParticles")]
 script = ExtResource("1_l21ws")
 _componentSelectorScene = ExtResource("2_sinrd")
 _vBoxContainer = NodePath("Control/VBoxContainer")
+_cloudParticles = NodePath("CloudParticles")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -76,3 +90,18 @@ position = Vector2(250, 136)
 
 [node name="Player" parent="." instance=ExtResource("6_u84ty")]
 position = Vector2(525, 368)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(759, 477)
+scale = Vector2(2000, 2000)
+texture = ExtResource("7_w6sks")
+
+[node name="CloudParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-14, 440)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_2k5jj")
+texture = ExtResource("8_k78y2")
+lifetime = 200.0
+randomness = 1.0
