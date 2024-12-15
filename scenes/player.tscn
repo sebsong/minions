@@ -111,7 +111,7 @@ position = Vector2(20, 0)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_3scxi")
 
-[node name="BodyCollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="BodyCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_uyeox")
 

@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cicxxe885qgxc"]
+[gd_scene load_steps=5 format=3 uid="uid://cicxxe885qgxc"]
 
 [ext_resource type="Script" path="res://scripts/HealthBar.cs" id="1_n0y0m"]
-[ext_resource type="Texture2D" uid="uid://bbb1sjykhw0rb" path="res://icon.svg" id="1_si6u1"]
+[ext_resource type="Texture2D" uid="uid://bxxsikuuphew8" path="res://art/health_bar_background.png" id="2_a3io7"]
+[ext_resource type="Texture2D" uid="uid://dbcluk6or0tip" path="res://art/health_bar.png" id="2_cjw5a"]
+[ext_resource type="Texture2D" uid="uid://v3t6fqtnx07y" path="res://art/health_bar_border.png" id="4_c6lhh"]
 
 [node name="HealthBar" type="Node2D" node_paths=PackedStringArray("_progressBar")]
 scale = Vector2(1, 0.1)
 script = ExtResource("1_n0y0m")
 _progressBar = NodePath("TextureProgressBar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(141, 430)
+texture = ExtResource("4_c6lhh")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 8
@@ -15,12 +21,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -64.0
+offset_top = -150.0
 offset_right = 64.0
-offset_bottom = 64.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 3.0
 value = 3.0
-texture_progress = ExtResource("1_si6u1")
-tint_progress = Color(0.513678, 1, 0.48175, 1)
+nine_patch_stretch = true
+texture_under = ExtResource("2_a3io7")
+texture_progress = ExtResource("2_cjw5a")
