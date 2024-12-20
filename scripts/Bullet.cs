@@ -8,6 +8,7 @@ public partial class Bullet : Node2D
 	[Export] private Area2D _hitBox;
 	[Export] private Sprite2D _bulletSprite;
 	[Export] private GpuParticles2D _bulletExplostion;
+	[Export] private AudioStreamPlayer2D _bulletSound;
 
 	[Export] public float Speed = ComponentUtils.DefaultAttackSpeed;
 	[Export] public int Damage = ComponentUtils.DefaultAttackDamage;
@@ -17,6 +18,7 @@ public partial class Bullet : Node2D
 	public override void _Ready()
 	{
 		_hitBox.BodyEntered += OnHitBoxBodyEntered;
+		_bulletSound.Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
