@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6jiqm8cs3d0o"]
+
+[ext_resource type="Script" path="res://scripts/ui/ComponentSelectorOld.cs" id="1_y2x33"]
+
+[node name="ComponentSelector" type="Control" node_paths=PackedStringArray("_movementOptions", "_attackOptions")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y2x33")
+_movementOptions = NodePath("HBoxContainer/MovementOptions")
+_attackOptions = NodePath("HBoxContainer/AttackOptions")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MovementOptions" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="AttackOptions" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[connection signal="item_selected" from="HBoxContainer/MovementOptions" to="." method="UpdateMinionMovementComponent"]
+[connection signal="item_selected" from="HBoxContainer/AttackOptions" to="." method="UpdateMinionAttackComponent"]

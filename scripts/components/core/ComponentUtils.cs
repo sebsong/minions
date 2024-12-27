@@ -38,6 +38,13 @@ public static class ComponentUtils
     /* Defense Defaults */
     public const int DefaultMaxHealth = 10;
 
+    public enum ComponentCategory
+    {
+        Movement,
+        Attack,
+        Defense
+    }
+
     public enum ComponentType
     {
         /** Movement Component Types **/
@@ -75,6 +82,13 @@ public static class ComponentUtils
     {
         ComponentType.BasicDefense,
         ComponentType.InvincibleDefense
+    };
+
+    public static readonly Dictionary<ComponentCategory, List<ComponentType>> ComponentCategoryToType = new()
+    {
+        {ComponentCategory.Movement, MovementComponentTypes},
+        {ComponentCategory.Attack, AttackComponentTypes},
+        {ComponentCategory.Defense, DefenseComponentTypes},
     };
 
     private static readonly Dictionary<ComponentType, PackedScene> TypeToScene = new()

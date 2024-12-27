@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://hw3fscn0bteq"]
+
+[ext_resource type="Script" path="res://scripts/ui/ComponentButton.cs" id="1_ajjsh"]
+
+[node name="ComponentButton" type="Button"]
+text = "Component Name"
+script = ExtResource("1_ajjsh")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dpo16bk8er14u"]
 
-[ext_resource type="Script" path="res://scenes/Player.cs" id="1_cpvl1"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_cpvl1"]
 [ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_fiwlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]

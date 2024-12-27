@@ -1,24 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6jiqm8cs3d0o"]
+[gd_scene load_steps=2 format=3 uid="uid://cwjkufdo0e32e"]
 
-[ext_resource type="Script" path="res://scripts/ui/ComponentSelector.cs" id="1_y2x33"]
+[ext_resource type="Script" path="res://scripts/ui/ComponentSelector.cs" id="1_q617n"]
 
-[node name="ComponentSelector" type="Control" node_paths=PackedStringArray("_movementOptions", "_attackOptions")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_y2x33")
-_movementOptions = NodePath("HBoxContainer/MovementOptions")
-_attackOptions = NodePath("HBoxContainer/AttackOptions")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
+[node name="ComponentSelector" type="VBoxContainer" node_paths=PackedStringArray("_categoryTitle", "_componentOptions")]
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_q617n")
+_categoryTitle = NodePath("CategoryTitle")
+_componentOptions = NodePath("ComponentOptions")
 
-[node name="MovementOptions" type="OptionButton" parent="HBoxContainer"]
+[node name="CategoryTitle" type="Label" parent="."]
 layout_mode = 2
+horizontal_alignment = 1
 
-[node name="AttackOptions" type="OptionButton" parent="HBoxContainer"]
+[node name="ComponentOptions" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[connection signal="item_selected" from="HBoxContainer/MovementOptions" to="." method="UpdateMinionMovementComponent"]
-[connection signal="item_selected" from="HBoxContainer/AttackOptions" to="." method="UpdateMinionAttackComponent"]

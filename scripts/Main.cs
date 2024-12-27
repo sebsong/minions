@@ -19,7 +19,7 @@ public partial class Main : Node2D
         foreach (var minionNode in minionNodes)
         {
             Minion minion = (Minion)minionNode;
-            ComponentSelector selector = _componentSelectorScene.Instantiate<ComponentSelector>();
+            ComponentSelectorOld selector = _componentSelectorScene.Instantiate<ComponentSelectorOld>();
             _vBoxContainer.AddChild(selector);
             selector.RegisterMinion(minion);
         }

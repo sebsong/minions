@@ -9,7 +9,7 @@ public partial class PlayerAttack : AttackComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.PlayerAttack;
 
-    [Export] private PackedScene _bulletScene = ResourceLoader.Load<PackedScene>("res://scenes/bullet.tscn");
+    [Export] private PackedScene _bulletScene = ResourceLoader.Load<PackedScene>("res://scenes/entities/bullet.tscn");
     [Export] private Timer _shootCooldownTimer;
 
     [Export] private float _bulletSpeed;
