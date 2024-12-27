@@ -3,5 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ComponentButton.cs" id="1_ajjsh"]
 
 [node name="ComponentButton" type="Button"]
+focus_mode = 0
+toggle_mode = true
 text = "Component Name"
 script = ExtResource("1_ajjsh")
