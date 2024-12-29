@@ -33,6 +33,7 @@ public partial class BasicDefense : DefenseComponent
 
     private void Die()
     {
+        AudioManager.Instance.ExplodeAudio.Play();
         GetComponentOwner().QueueFree();
     }
 

@@ -1,4 +1,5 @@
 using Godot;
+using minions.scripts.entities;
 
 namespace minions.scripts.components.core;
 
@@ -40,6 +41,10 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public void TakeDamage(int amount)
     {
         _defenseComponent.TakeDamage(amount);
+        if (this is not Player)
+        {
+            AudioManager.Instance.HitAudio.Play();
+        }
     }
 
     public void SetComponentsFromSelection(ComponentSelection selection)
