@@ -1,7 +1,7 @@
 using Godot;
 using minions.scripts.components.core;
 
-namespace minions.scripts;
+namespace minions.scripts.entities;
 
 public partial class Bullet : Node2D
 {

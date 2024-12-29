@@ -52,7 +52,7 @@ public partial class PlayerAttack : AttackComponent
     {
         if (Input.IsActionPressed("shoot") && _canShoot && _currentBulletSpawnIndex != -1)
         {
-            Bullet bullet = _bulletScene.Instantiate<Bullet>();
+            entities.Bullet bullet = _bulletScene.Instantiate<entities.Bullet>();
             bullet.Speed = AttackSpeed;
             bullet.Damage = AttackDamage;
             Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];

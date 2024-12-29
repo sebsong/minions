@@ -10,7 +10,7 @@ public partial class FollowAllyMovement : MovementComponent
 
     [Export] private float _followDistance;
 
-    private Minion _allyTarget;
+    private entities.Minion _allyTarget;
 
     public override void _Ready()
     {
@@ -48,7 +48,7 @@ public partial class FollowAllyMovement : MovementComponent
         }
         else
         {
-            _allyTarget = allMinions.PickRandom() as minions.scripts.Minion;
+            _allyTarget = allMinions.PickRandom() as entities.Minion;
         }
     }
 }

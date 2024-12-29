@@ -42,6 +42,13 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         _defenseComponent.TakeDamage(amount);
     }
 
+    public void SetComponentsFromSelection(ComponentSelection selection)
+    {
+        SetMovementComponent(selection[ComponentUtils.ComponentCategory.Movement]);
+        SetAttackComponent(selection[ComponentUtils.ComponentCategory.Attack]);
+        SetDefenseComponent(selection[ComponentUtils.ComponentCategory.Defense]);
+    }
+
     public void SetMovementComponent(ComponentUtils.ComponentType componentType)
     {
         _movementComponent = ComponentUtils.AttachComponent<MovementComponent>(

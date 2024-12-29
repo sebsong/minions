@@ -18,7 +18,7 @@ public partial class Main : Node2D
         Array<Node> minionNodes = GetTree().GetNodesInGroup("minions");
         foreach (var minionNode in minionNodes)
         {
-            Minion minion = (Minion)minionNode;
+            entities.Minion minion = (entities.Minion)minionNode;
             ComponentSelectorOld selector = _componentSelectorScene.Instantiate<ComponentSelectorOld>();
             _vBoxContainer.AddChild(selector);
             selector.RegisterMinion(minion);

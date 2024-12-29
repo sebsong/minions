@@ -9,7 +9,7 @@ public partial class ComponentSelectorOld : Control
     [Export] private OptionButton _movementOptions;
     [Export] private OptionButton _attackOptions;
 
-    private Minion _minion;
+    private entities.Minion _minion;
 
     public override void _Ready()
     {
@@ -18,7 +18,7 @@ public partial class ComponentSelectorOld : Control
         _registerOptions();
     }
 
-    public void RegisterMinion(Minion minion)
+    public void RegisterMinion(entities.Minion minion)
     {
         _minion = minion;
         UpdateMinionMovementComponent(_movementOptions.Selected);

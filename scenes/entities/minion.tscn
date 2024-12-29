@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cbrcdax58qkla"]
 
-[ext_resource type="Script" path="res://scripts/Minion.cs" id="1_c06wf"]
+[ext_resource type="Script" path="res://scripts/entities/Minion.cs" id="1_c06wf"]
 [ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_h16hh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a6cb"]

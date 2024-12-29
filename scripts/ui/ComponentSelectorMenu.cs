@@ -33,20 +33,21 @@ public partial class ComponentSelectorMenu : Control
 
     private void OnConfirmButtonPressed()
     {
-        foreach (var (category, type) in GetSelection().Selection)
-        {
-            GD.Print($"SELECTION: {category} - {type}");
-        }
+        CurrentSelectionGlobal.Instance.CurrentPlayerSelection = GetSelection();
+        GetTree().ChangeSceneToFile("res://scenes/main.tscn");
     }
 
     private ComponentSelection GetSelection()
     {
-        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selection = new();
+        ComponentSelection selection = new();
         foreach (var (category, selector) in _componentSelectors)
         {
-            selection[category] = selector.SelectedComponentButton.Type;
+            if (selector.SelectedComponentButton != null)
+            {
+                selection[category] = selector.SelectedComponentButton.Type;
+            }
         }
 
-        return new ComponentSelection(selection);
+        return selection;
     }
 }

@@ -8,7 +8,7 @@ public partial class TargetEnemyMovement : MovementComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.TargetEnemyMovement;
 
-    private Enemy _enemyTarget;
+    private entities.Enemy _enemyTarget;
 
     public override void _Ready()
     {
@@ -33,7 +33,7 @@ public partial class TargetEnemyMovement : MovementComponent
 
     public override void OnCollision(KinematicCollision2D collision)
     {
-        if (collision.GetCollider() is Enemy)
+        if (collision.GetCollider() is entities.Enemy)
         {
             UpdateEnemyTarget();
         }
@@ -48,7 +48,7 @@ public partial class TargetEnemyMovement : MovementComponent
         }
         else
         {
-            _enemyTarget = allEnemies.PickRandom() as Enemy;
+            _enemyTarget = allEnemies.PickRandom() as entities.Enemy;
         }
     }
 }

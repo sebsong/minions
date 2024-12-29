@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bopkfowlxroe8"]
+[gd_scene load_steps=2 format=3 uid="uid://dox7fimn3vfpo"]
 
 [ext_resource type="Script" path="res://scripts/ui/ComponentSelectorMenu.cs" id="1_husdp"]
 
