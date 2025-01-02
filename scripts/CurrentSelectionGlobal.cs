@@ -9,8 +9,8 @@ public partial class CurrentSelectionGlobal : Node
 
     public ComponentSelection CurrentPlayerSelection = new(
         ComponentUtils.ComponentType.PlayerBehavior,
-        ComponentUtils.ComponentType.PlayerMovement,
-        ComponentUtils.ComponentType.PlayerAttack,
+        ComponentUtils.ComponentType.GlideMovement,
+        ComponentUtils.ComponentType.MachineGunAttack,
         ComponentUtils.ComponentType.BasicDefense
     );
 

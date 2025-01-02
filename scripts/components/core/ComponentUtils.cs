@@ -16,8 +16,6 @@ public static class ComponentUtils
     private static readonly PackedScene RandomBehaviorScene = LoadScene(BehaviorPath, "random_behavior.tscn");
 
     /* Movement Scenes */
-    private static readonly PackedScene PlayerMovementScene = LoadScene(MovementPath, "player_movement.tscn");
-    private static readonly PackedScene RandomMovementScene = LoadScene(MovementPath, "random_movement.tscn");
     private static readonly PackedScene
         TargetEnemyMovementScene = LoadScene(MovementPath, "target_enemy_movement.tscn");
     private static readonly PackedScene FollowALlyMovementScene = LoadScene(MovementPath, "follow_ally_movement.tscn");
@@ -62,8 +60,6 @@ public static class ComponentUtils
         FollowAllyBehavior, // TODO
 
         /** Movement Component Types **/
-        PlayerMovement,
-        RandomMovement,
         TargetEnemyMovement,
         FollowAllyMovement,
         GlideMovement,
@@ -89,8 +85,6 @@ public static class ComponentUtils
 
     public static readonly List<ComponentType> MovementComponentTypes = new()
     {
-        ComponentType.PlayerMovement,
-        ComponentType.RandomMovement,
         ComponentType.TargetEnemyMovement,
         ComponentType.FollowAllyMovement,
         ComponentType.GlideMovement,
@@ -125,8 +119,6 @@ public static class ComponentUtils
         { ComponentType.RandomBehavior, RandomBehaviorScene },
 
         // Movement Component Types
-        { ComponentType.PlayerMovement, PlayerMovementScene },
-        { ComponentType.RandomMovement, RandomMovementScene },
         { ComponentType.TargetEnemyMovement, TargetEnemyMovementScene },
         { ComponentType.FollowAllyMovement, FollowALlyMovementScene },
         { ComponentType.GlideMovement, GlideMovementScene },
