@@ -22,7 +22,6 @@ public static class ComponentUtils
     private static readonly PackedScene GlideMovementScene = LoadScene(MovementPath, "glide_movement.tscn");
 
     /* Attack Scenes */
-    private static readonly PackedScene PlayerAttackScene = LoadScene(AttackPath, "player_attack.tscn");
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
     private static readonly PackedScene AreaAttackScene = LoadScene(AttackPath, "area_attack.tscn");
     private static readonly PackedScene MachineGunAttackScene = LoadScene(AttackPath, "machine_gun_attack.tscn");
@@ -65,7 +64,6 @@ public static class ComponentUtils
         GlideMovement,
 
         /** Attack Component Types **/
-        PlayerAttack,
         MachineGunAttack,
         ContactAttack,
         AreaAttack,
@@ -92,7 +90,6 @@ public static class ComponentUtils
 
     public static readonly List<ComponentType> AttackComponentTypes = new()
     {
-        ComponentType.PlayerAttack,
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
         ComponentType.MachineGunAttack,
@@ -124,7 +121,6 @@ public static class ComponentUtils
         { ComponentType.GlideMovement, GlideMovementScene },
 
         // Attack Component Types
-        { ComponentType.PlayerAttack, PlayerAttackScene },
         { ComponentType.ContactAttack, ContactAttackScene },
         { ComponentType.AreaAttack, AreaAttackScene },
         { ComponentType.MachineGunAttack, MachineGunAttackScene },
