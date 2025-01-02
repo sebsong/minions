@@ -14,6 +14,7 @@ public static class ComponentUtils
     /* Behavior Scenes */
     private static readonly PackedScene PlayerBehaviorScene = LoadScene(BehaviorPath, "player_behavior.tscn");
     private static readonly PackedScene RandomBehaviorScene = LoadScene(BehaviorPath, "random_behavior.tscn");
+    private static readonly PackedScene TargetEnemyBehaviorScene = LoadScene(BehaviorPath, "target_enemy_behavior.tscn");
 
     /* Movement Scenes */
     private static readonly PackedScene
@@ -116,6 +117,7 @@ public static class ComponentUtils
         // Behavior Component Types
         { ComponentType.PlayerBehavior, PlayerBehaviorScene },
         { ComponentType.RandomBehavior, RandomBehaviorScene },
+        { ComponentType.TargetEnemyBehavior, TargetEnemyBehaviorScene },
 
         // Movement Component Types
         { ComponentType.TargetEnemyMovement, TargetEnemyMovementScene },

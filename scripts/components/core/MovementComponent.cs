@@ -10,4 +10,9 @@ public abstract partial class MovementComponent : Component
     public abstract Vector2 GetVelocity(Vector2 targetLocation, double delta);
 
     public abstract void OnCollision(KinematicCollision2D collision);
+
+    protected bool IsIdleTargetLocation(Vector2 targetLocation)
+    {
+        return targetLocation.DistanceTo(GetComponentOwner().Position) < 1;
+    }
 }

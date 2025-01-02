@@ -18,7 +18,13 @@ public partial class GlideMovement : MovementComponent
 
     public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
     {
-        TurnTowardTargetLocation(targetLocation, delta);
+        Vector2 location = targetLocation;
+        if (IsIdleTargetLocation(targetLocation))
+        {
+            location = GetComponentOwner().ToGlobal(Vector2.Down);
+        }
+
+        TurnTowardTargetLocation(location, delta);
         return _currentVelocity;
     }
 
