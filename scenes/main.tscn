@@ -23,34 +23,8 @@ scale_max = 6.0
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer", "_cloudParticles")]
 script = ExtResource("1_l21ws")
 _componentSelectorScene = ExtResource("2_myyjt")
-_vBoxContainer = NodePath("Control/VBoxContainer")
+_vBoxContainer = NodePath("")
 _cloudParticles = NodePath("CloudParticles")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 162.0
-offset_top = 193.0
-offset_right = 162.0
-offset_bottom = 193.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -126.0
-offset_top = -42.0
-offset_right = -126.0
-offset_bottom = -42.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 40
 
 [node name="wall" parent="." instance=ExtResource("1_nfebl")]
 position = Vector2(-21, 678)
