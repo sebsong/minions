@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://borc55ddrg4ss"]
+
+[ext_resource type="Script" path="res://scripts/components/behavior/PlayerBehavior.cs" id="1_10m4n"]
+
+[node name="PlayerBehavior" type="Node2D"]
+script = ExtResource("1_10m4n")

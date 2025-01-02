@@ -28,6 +28,7 @@ public class ComponentSelection
     public ComponentSelection(Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict)
     {
         ValidateSelectionDict(selectionDict);
+        BehaviorComponentType = selectionDict[ComponentUtils.ComponentCategory.Behavior];
         MovementComponentType = selectionDict[ComponentUtils.ComponentCategory.Movement];
         AttackComponentType = selectionDict[ComponentUtils.ComponentCategory.Attack];
         DefenseComponentType = selectionDict[ComponentUtils.ComponentCategory.Defense];

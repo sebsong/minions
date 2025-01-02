@@ -14,6 +14,7 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
+        // SetBehaviorComponent(ComponentUtils.ComponentType.PlayerBehavior);
         SetMovementComponent(ComponentUtils.ComponentType.RandomMovement);
         SetAttackComponent(ComponentUtils.ComponentType.ContactAttack);
         SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
@@ -23,10 +24,10 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Vector2 targetLocation = _behaviorComponent.GetTargetLocation(delta);
+        Vector2 targetLocation = _behaviorComponent?.GetTargetLocation(delta) ?? GlobalPosition;
         Velocity = _movementComponent.GetVelocity(targetLocation, delta);
         LookAt(GlobalPosition + Velocity);
-        if (_behaviorComponent.ShouldAttack(delta))
+        if (_behaviorComponent != null && _behaviorComponent.ShouldAttack(delta))
         {
             _attackComponent.Attack();
         }
