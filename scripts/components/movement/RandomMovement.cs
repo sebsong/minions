@@ -25,7 +25,7 @@ public partial class RandomMovement : MovementComponent
         UpdateDestination();
     }
 
-    public override Vector2 GetVelocity(double delta)
+    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
     {
         if (GetComponentOwner().GlobalPosition.DistanceTo(_currentDestination) < 1)
         {

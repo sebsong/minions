@@ -39,7 +39,7 @@ public partial class PlayerAttack : AttackComponent
         }
     }
 
-    public override void Attack(double delta)
+    public override void Attack()
     {
         HandleShooting();
     }

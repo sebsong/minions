@@ -16,7 +16,7 @@ public partial class TargetEnemyMovement : MovementComponent
         UpdateEnemyTarget();
     }
 
-    public override Vector2 GetVelocity(double delta)
+    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
     {
         if (!IsInstanceValid(_enemyTarget))
         {

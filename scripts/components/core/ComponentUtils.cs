@@ -6,9 +6,12 @@ namespace minions.scripts.components.core;
 public static class ComponentUtils
 {
     private const string ComponentsPath = "res://scenes/components";
+    private const string BehaviorPath = ComponentsPath + "/behavior";
     private const string MovementPath = ComponentsPath + "/movement";
     private const string AttackPath = ComponentsPath + "/attack";
     private const string DefensePath = ComponentsPath + "/defense";
+
+    /* Behavior Scenes */
 
     /* Movement Scenes */
     private static readonly PackedScene PlayerMovementScene = LoadScene(MovementPath, "player_movement.tscn");
@@ -40,6 +43,7 @@ public static class ComponentUtils
 
     public enum ComponentCategory
     {
+        Behavior, // TODO
         Movement,
         Attack,
         Defense
@@ -48,6 +52,10 @@ public static class ComponentUtils
     public enum ComponentType
     {
         /** Behavior Component Types **/
+        PlayerBehavior, // TODO
+        RandomBehavior, // TODO
+        TargetEnemyBehavior, // TODO
+        FollowAllyBehavior, // TODO
 
         /** Movement Component Types **/
         PlayerMovement,
@@ -64,6 +72,14 @@ public static class ComponentUtils
         BasicDefense,
         InvincibleDefense,
     }
+
+    public static readonly List<ComponentType> BehaviorComponentTypes = new()
+    {
+        ComponentType.PlayerBehavior,
+        ComponentType.RandomBehavior,
+        ComponentType.TargetEnemyBehavior,
+        ComponentType.FollowAllyBehavior,
+    };
 
     public static readonly List<ComponentType> MovementComponentTypes = new()
     {
@@ -88,6 +104,7 @@ public static class ComponentUtils
 
     public static readonly Dictionary<ComponentCategory, List<ComponentType>> ComponentCategoryToType = new()
     {
+        {ComponentCategory.Behavior, BehaviorComponentTypes},
         {ComponentCategory.Movement, MovementComponentTypes},
         {ComponentCategory.Attack, AttackComponentTypes},
         {ComponentCategory.Defense, DefenseComponentTypes},

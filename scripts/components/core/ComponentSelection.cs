@@ -6,17 +6,20 @@ namespace minions.scripts.components.core;
 
 public class ComponentSelection
 {
+    public readonly ComponentUtils.ComponentType BehaviorComponentType;
     public readonly ComponentUtils.ComponentType MovementComponentType;
     public readonly ComponentUtils.ComponentType AttackComponentType;
     public readonly ComponentUtils.ComponentType DefenseComponentType;
 
     public ComponentSelection(
+        ComponentUtils.ComponentType behaviorComponentType,
         ComponentUtils.ComponentType movementComponentType,
         ComponentUtils.ComponentType attackComponentType,
         ComponentUtils.ComponentType defenseComponentType
     )
     {
-        ValidateSelection(movementComponentType, attackComponentType, defenseComponentType);
+        ValidateSelection(behaviorComponentType, movementComponentType, attackComponentType, defenseComponentType);
+        BehaviorComponentType = behaviorComponentType;
         MovementComponentType = movementComponentType;
         AttackComponentType = attackComponentType;
         DefenseComponentType = defenseComponentType;
@@ -31,11 +34,13 @@ public class ComponentSelection
     }
 
     private static void ValidateSelection(
+        ComponentUtils.ComponentType behaviorComponentType,
         ComponentUtils.ComponentType movementComponentType,
         ComponentUtils.ComponentType attackComponentType,
         ComponentUtils.ComponentType defenseComponentType
     )
     {
+        ValidateTypeBelongsToCategory(behaviorComponentType, ComponentUtils.ComponentCategory.Behavior);
         ValidateTypeBelongsToCategory(movementComponentType, ComponentUtils.ComponentCategory.Movement);
         ValidateTypeBelongsToCategory(attackComponentType, ComponentUtils.ComponentCategory.Attack);
         ValidateTypeBelongsToCategory(defenseComponentType, ComponentUtils.ComponentCategory.Defense);

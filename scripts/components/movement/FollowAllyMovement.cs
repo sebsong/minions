@@ -18,7 +18,7 @@ public partial class FollowAllyMovement : MovementComponent
         UpdateAllyTarget();
     }
 
-    public override Vector2 GetVelocity(double delta)
+    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
     {
         if (!IsInstanceValid(_allyTarget))
         {

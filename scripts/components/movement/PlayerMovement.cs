@@ -14,7 +14,7 @@ public partial class PlayerMovement : MovementComponent
         GetComponentOwner().Velocity = Vector2.Up * Speed;
     }
 
-    public override Vector2 GetVelocity(double delta)
+    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
     {
         return GetTurnedVelocity(delta);
     }

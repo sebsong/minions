@@ -5,6 +5,7 @@ namespace minions.scripts.components.core;
 
 public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 {
+    private BehaviorComponent _behaviorComponent;
     private MovementComponent _movementComponent;
     private AttackComponent _attackComponent;
     private DefenseComponent _defenseComponent;
@@ -18,18 +19,17 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        Velocity = _movementComponent.GetVelocity(delta);
-    }
-
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
         base._Process(delta);
+        Vector2 targetLocation = _behaviorComponent.GetTargetLocation(delta);
+        Velocity = _movementComponent.GetVelocity(targetLocation, delta);
         LookAt(GlobalPosition + Velocity);
-        _attackComponent.Attack(delta);
+        if (_behaviorComponent.ShouldAttack(delta))
+        {
+            _attackComponent.Attack();
+        }
         if (MoveAndSlide())
         {
             KinematicCollision2D collision = GetLastSlideCollision();
@@ -49,9 +49,18 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 
     protected void SetComponentsFromSelection(ComponentSelection selection)
     {
+        SetBehaviorComponent(selection.BehaviorComponentType);
         SetMovementComponent(selection.MovementComponentType);
         SetAttackComponent(selection.AttackComponentType);
         SetDefenseComponent(selection.DefenseComponentType);
+    }
+
+    public void SetBehaviorComponent(ComponentUtils.ComponentType componentType)
+    {
+        _behaviorComponent = ComponentUtils.AttachComponent<BehaviorComponent>(
+            this,
+            componentType
+        );
     }
 
     public void SetMovementComponent(ComponentUtils.ComponentType componentType)
