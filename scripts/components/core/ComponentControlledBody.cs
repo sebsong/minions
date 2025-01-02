@@ -14,10 +14,12 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
-        // SetBehaviorComponent(ComponentUtils.ComponentType.PlayerBehavior);
-        SetMovementComponent(ComponentUtils.ComponentType.RandomMovement);
-        SetAttackComponent(ComponentUtils.ComponentType.ContactAttack);
-        SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
+        SetComponentsFromSelection(new ComponentSelection(
+            ComponentUtils.ComponentType.RandomBehavior,
+            ComponentUtils.ComponentType.GlideMovement,
+            ComponentUtils.ComponentType.ContactAttack,
+            ComponentUtils.ComponentType.BasicDefense
+        ));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +33,7 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         {
             _attackComponent.Attack();
         }
+
         if (MoveAndSlide())
         {
             KinematicCollision2D collision = GetLastSlideCollision();
