@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://by4yk2co0cyv3"]
+[gd_scene load_steps=9 format=3 uid="uid://by4yk2co0cyv3"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="1_nfebl"]
 [ext_resource type="PackedScene" uid="uid://cbrcdax58qkla" path="res://scenes/entities/minion.tscn" id="2_i06yn"]
-[ext_resource type="PackedScene" uid="uid://c6jiqm8cs3d0o" path="res://scenes/ui/component_selector_old.tscn" id="2_myyjt"]
 [ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/entities/enemy.tscn" id="3_m3n6m"]
 [ext_resource type="PackedScene" uid="uid://dpo16bk8er14u" path="res://scenes/entities/player.tscn" id="6_u84ty"]
 [ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="7_w6sks"]
@@ -20,10 +19,8 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 6.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_vBoxContainer", "_cloudParticles")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_cloudParticles")]
 script = ExtResource("1_l21ws")
-_componentSelectorScene = ExtResource("2_myyjt")
-_vBoxContainer = NodePath("")
 _cloudParticles = NodePath("CloudParticles")
 
 [node name="wall" parent="." instance=ExtResource("1_nfebl")]

@@ -6,9 +6,6 @@ namespace minions.scripts;
 
 public partial class Main : Node2D
 {
-    [Export] private PackedScene _componentSelectorScene;
-    [Export] private VBoxContainer _vBoxContainer;
-
     [Export] private GpuParticles2D _cloudParticles;
 
     public override void _Ready()

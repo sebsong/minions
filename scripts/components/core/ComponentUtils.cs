@@ -59,9 +59,11 @@ public static class ComponentUtils
         FollowAllyBehavior, // TODO
 
         /** Movement Component Types **/
-        TargetEnemyMovement,
-        FollowAllyMovement,
+        TargetEnemyMovement, // TODO: remove
+        FollowAllyMovement, // TODO: remove
         GlideMovement,
+        // HoverMovement
+        // BoostMovement
 
         /** Attack Component Types **/
         MachineGunAttack,
