@@ -1,22 +1,68 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using Godot.Collections;
 
 namespace minions.scripts.components.core;
 
-public class ComponentSelection : Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType>
+public class ComponentSelection
 {
-    public void ValidateSelection()
+    public readonly ComponentUtils.ComponentType MovementComponentType;
+    public readonly ComponentUtils.ComponentType AttackComponentType;
+    public readonly ComponentUtils.ComponentType DefenseComponentType;
+
+    public ComponentSelection(
+        ComponentUtils.ComponentType movementComponentType,
+        ComponentUtils.ComponentType attackComponentType,
+        ComponentUtils.ComponentType defenseComponentType
+    )
+    {
+        ValidateSelection(movementComponentType, attackComponentType, defenseComponentType);
+        MovementComponentType = movementComponentType;
+        AttackComponentType = attackComponentType;
+        DefenseComponentType = defenseComponentType;
+    }
+
+    public ComponentSelection(Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict)
+    {
+        ValidateSelectionDict(selectionDict);
+        MovementComponentType = selectionDict[ComponentUtils.ComponentCategory.Movement];
+        AttackComponentType = selectionDict[ComponentUtils.ComponentCategory.Attack];
+        DefenseComponentType = selectionDict[ComponentUtils.ComponentCategory.Defense];
+    }
+
+    private static void ValidateSelection(
+        ComponentUtils.ComponentType movementComponentType,
+        ComponentUtils.ComponentType attackComponentType,
+        ComponentUtils.ComponentType defenseComponentType
+    )
+    {
+        ValidateTypeBelongsToCategory(movementComponentType, ComponentUtils.ComponentCategory.Movement);
+        ValidateTypeBelongsToCategory(attackComponentType, ComponentUtils.ComponentCategory.Attack);
+        ValidateTypeBelongsToCategory(defenseComponentType, ComponentUtils.ComponentCategory.Defense);
+    }
+
+    private static void ValidateSelectionDict(
+        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict)
     {
         foreach (ComponentUtils.ComponentCategory category in Enum.GetValues(typeof(ComponentUtils.ComponentCategory)))
         {
-            Debug.Assert(ContainsKey(category), $"Missing selection for component category: {category}.");
+            Debug.Assert(selectionDict.ContainsKey(category), $"Missing selection for component category: {category}.");
         }
 
-        foreach (var (category, type) in this)
+        foreach (var (category, type) in selectionDict)
         {
-            ICollection<ComponentUtils.ComponentType> categoryTypes = ComponentUtils.ComponentCategoryToType[category];
-            Debug.Assert(categoryTypes.Contains(type), $"Component type {type} does not belong to component category {category}.");
+            ValidateTypeBelongsToCategory(type, category);
         }
+    }
+
+    private static void ValidateTypeBelongsToCategory(
+        ComponentUtils.ComponentType componentType,
+        ComponentUtils.ComponentCategory category
+    )
+    {
+        System.Collections.Generic.ICollection<ComponentUtils.ComponentType> validComponentTypes =
+            ComponentUtils.ComponentCategoryToType[category];
+        Debug.Assert(validComponentTypes.Contains(componentType),
+            $"Component type {componentType} does not belong to component category {category}.");
     }
 }

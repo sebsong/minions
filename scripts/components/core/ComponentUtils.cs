@@ -47,6 +47,8 @@ public static class ComponentUtils
 
     public enum ComponentType
     {
+        /** Behavior Component Types **/
+
         /** Movement Component Types **/
         PlayerMovement,
         RandomMovement,

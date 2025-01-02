@@ -39,15 +39,15 @@ public partial class ComponentSelectorMenu : Control
 
     private ComponentSelection GetSelection()
     {
-        ComponentSelection selection = new();
+        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict = new();
         foreach (var (category, selector) in _componentSelectors)
         {
             if (selector.SelectedComponentButton != null)
             {
-                selection[category] = selector.SelectedComponentButton.Type;
+                selectionDict[category] = selector.SelectedComponentButton.Type;
             }
         }
 
-        return selection;
+        return new ComponentSelection(selectionDict);
     }
 }

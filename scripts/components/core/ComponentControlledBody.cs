@@ -47,11 +47,11 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         }
     }
 
-    public void SetComponentsFromSelection(ComponentSelection selection)
+    protected void SetComponentsFromSelection(ComponentSelection selection)
     {
-        SetMovementComponent(selection[ComponentUtils.ComponentCategory.Movement]);
-        SetAttackComponent(selection[ComponentUtils.ComponentCategory.Attack]);
-        SetDefenseComponent(selection[ComponentUtils.ComponentCategory.Defense]);
+        SetMovementComponent(selection.MovementComponentType);
+        SetAttackComponent(selection.AttackComponentType);
+        SetDefenseComponent(selection.DefenseComponentType);
     }
 
     public void SetMovementComponent(ComponentUtils.ComponentType componentType)
