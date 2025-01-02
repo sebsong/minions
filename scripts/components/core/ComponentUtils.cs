@@ -75,7 +75,7 @@ public static class ComponentUtils
         InvincibleDefense,
     }
 
-    public static readonly List<ComponentType> BehaviorComponentTypes = new()
+    private static readonly List<ComponentType> BehaviorComponentTypes = new()
     {
         ComponentType.PlayerBehavior,
         ComponentType.RandomBehavior,
@@ -83,21 +83,21 @@ public static class ComponentUtils
         ComponentType.FollowAllyBehavior,
     };
 
-    public static readonly List<ComponentType> MovementComponentTypes = new()
+    private static readonly List<ComponentType> MovementComponentTypes = new()
     {
         ComponentType.TargetEnemyMovement,
         ComponentType.FollowAllyMovement,
         ComponentType.GlideMovement,
     };
 
-    public static readonly List<ComponentType> AttackComponentTypes = new()
+    private static readonly List<ComponentType> AttackComponentTypes = new()
     {
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
         ComponentType.MachineGunAttack,
     };
 
-    public static readonly List<ComponentType> DefenseComponentTypes = new()
+    private static readonly List<ComponentType> DefenseComponentTypes = new()
     {
         ComponentType.BasicDefense,
         ComponentType.InvincibleDefense

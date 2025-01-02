@@ -1,6 +1,4 @@
 using Godot;
-using Godot.Collections;
-using minions.scripts.ui;
 
 namespace minions.scripts;
 
