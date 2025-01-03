@@ -20,7 +20,7 @@ public partial class FollowAllyBehavior : BehaviorComponent
         UpdateAllyTarget();
     }
 
-    public override Vector2 GetTargetLocation(double delta)
+    public override LocationInput GetLocationInput(double delta)
     {
         if (!IsInstanceValid(_allyTarget))
         {
@@ -29,10 +29,10 @@ public partial class FollowAllyBehavior : BehaviorComponent
 
         if (!IsInstanceValid(_allyTarget) || Position.DistanceTo(_allyTarget.Position) <= _followDistance)
         {
-            return GetIdleTargetLocation();
+            return new LocationInput(false, ComponentUtils.IdleTargetLocation);
         }
 
-        return _allyTarget.Position; // TODO: follow distance
+        return new LocationInput(false, _allyTarget.Position); // TODO: follow distance
     }
 
     public override bool ShouldAttack(double delta)

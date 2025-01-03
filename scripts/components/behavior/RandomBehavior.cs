@@ -31,14 +31,14 @@ public partial class RandomBehavior : BehaviorComponent
         UpdateTargetLocation();
     }
 
-    public override Vector2 GetTargetLocation(double delta)
+    public override LocationInput GetLocationInput(double delta)
     {
-        if (GetComponentOwner().GlobalPosition.DistanceTo(_currentTargetLocation) < 1)
+        if (GetComponentOwner().GlobalPosition.DistanceTo(_currentTargetLocation) < 0.1)
         {
             UpdateTargetLocation();
         }
 
-        return _currentTargetLocation;
+        return new LocationInput(false, _currentTargetLocation);
     }
 
     public override bool ShouldAttack(double delta)

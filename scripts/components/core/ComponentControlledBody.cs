@@ -26,9 +26,9 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Vector2 targetLocation = _behaviorComponent?.GetTargetLocation(delta) ?? GlobalPosition;
-        Velocity = _movementComponent.GetVelocity(targetLocation, delta);
-        LookAt(GlobalPosition + Velocity);
+        LocationInput locationInput = _behaviorComponent?.GetLocationInput(delta) ??
+                                      new LocationInput(false, ComponentUtils.IdleTargetLocation);
+        Velocity = _movementComponent.GetVelocity(locationInput, delta);
         if (_behaviorComponent != null && _behaviorComponent.ShouldAttack(delta))
         {
             _attackComponent.Attack();
