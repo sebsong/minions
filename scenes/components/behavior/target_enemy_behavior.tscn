@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cek7rqr2gyjb5"]
 
-[ext_resource type="Script" path="res://scripts/components/movement/TargetEnemyBehavior.cs" id="1_f2e12"]
+[ext_resource type="Script" path="res://scripts/components/behavior/TargetEnemyBehavior.cs" id="1_f2e12"]
 
 [node name="TargetEnemyBehavior" type="Node2D"]
 script = ExtResource("1_f2e12")
