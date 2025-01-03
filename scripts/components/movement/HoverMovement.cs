@@ -6,7 +6,13 @@ namespace minions.scripts.components.movement;
 public partial class HoverMovement : MovementComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.HoverMovement;
-    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
+
+    protected override Vector2 GetVelocityForInputDirection(Vector2 direction, double delta)
+    {
+        return GetVelocityForTargetLocation(GetComponentOwner().GlobalPosition + direction, delta);
+    }
+
+    protected override Vector2 GetVelocityForTargetLocation(Vector2 targetLocation, double delta)
     {
         if (IsIdleTargetLocation(targetLocation))
         {

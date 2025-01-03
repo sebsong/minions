@@ -4,7 +4,7 @@ namespace minions.scripts.components.core;
 
 public abstract partial class BehaviorComponent : Component
 {
-    public abstract Vector2 GetTargetLocation(double delta);
+    public abstract LocationInput GetLocationInput(double delta);
 
     public abstract bool ShouldAttack(double delta);
 

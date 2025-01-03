@@ -11,7 +11,7 @@ public partial class TargetEnemyBehavior : BehaviorComponent
 
     private entities.Enemy _enemyTarget;
 
-    public override Vector2 GetTargetLocation(double delta)
+    public override LocationInput GetLocationInput(double delta)
     {
         if (!IsInstanceValid(_enemyTarget))
         {
@@ -20,10 +20,10 @@ public partial class TargetEnemyBehavior : BehaviorComponent
 
         if (!IsInstanceValid(_enemyTarget))
         {
-            return ComponentUtils.IdleTargetLocation;
+            return new LocationInput(false, ComponentUtils.IdleTargetLocation);
         }
 
-        return _enemyTarget.Position;
+        return new LocationInput(false, _enemyTarget.Position);
     }
 
     public override bool ShouldAttack(double delta)

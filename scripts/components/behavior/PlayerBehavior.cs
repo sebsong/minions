@@ -7,20 +7,30 @@ public partial class PlayerBehavior : BehaviorComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.PlayerBehavior;
 
-    public override Vector2 GetTargetLocation(double delta)
+    public override LocationInput GetLocationInput(double delta)
     {
-        Vector2 targetLocation = Vector2.Zero;
+        Vector2 relativeDirection = Vector2.Zero;
         if (Input.IsActionPressed("left"))
         {
-            targetLocation = Vector2.Up;
+            relativeDirection += Vector2.Left;
         }
 
         if (Input.IsActionPressed("right"))
         {
-            targetLocation = Vector2.Down;
+            relativeDirection += Vector2.Right;
         }
 
-        return GetComponentOwner().ToGlobal(targetLocation);
+        if (Input.IsActionPressed("up"))
+        {
+            relativeDirection += Vector2.Up;
+        }
+
+        if (Input.IsActionPressed("down"))
+        {
+            relativeDirection += Vector2.Down;
+        }
+
+        return new LocationInput(true, relativeDirection.Normalized());
     }
 
     public override bool ShouldAttack(double delta)

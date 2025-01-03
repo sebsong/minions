@@ -16,7 +16,23 @@ public partial class GlideMovement : MovementComponent
         _currentVelocity = Vector2.Up * Speed;
     }
 
-    public override Vector2 GetVelocity(Vector2 targetLocation, double delta)
+    protected override Vector2 GetVelocityForInputDirection(Vector2 direction, double delta)
+    {
+        Vector2 relativeTargetLocation = Vector2.Zero;
+        if (direction == Vector2.Left)
+        {
+            relativeTargetLocation = Vector2.Up;
+        }
+
+        if (direction == Vector2.Right)
+        {
+            relativeTargetLocation = Vector2.Down;
+        }
+
+        return GetVelocityForTargetLocation(GetComponentOwner().ToGlobal(relativeTargetLocation), delta);
+    }
+
+    protected override Vector2 GetVelocityForTargetLocation(Vector2 targetLocation, double delta)
     {
         Vector2 location = targetLocation;
         if (IsIdleTargetLocation(targetLocation))
