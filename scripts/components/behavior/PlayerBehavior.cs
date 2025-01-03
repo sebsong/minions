@@ -9,7 +9,7 @@ public partial class PlayerBehavior : BehaviorComponent
 
     public override Vector2 GetTargetLocation(double delta)
     {
-        Vector2 targetLocation = Vector2.Right;
+        Vector2 targetLocation = Vector2.Zero;
         if (Input.IsActionPressed("left"))
         {
             targetLocation = Vector2.Up;

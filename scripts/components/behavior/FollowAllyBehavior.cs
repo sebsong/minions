@@ -29,7 +29,7 @@ public partial class FollowAllyBehavior : BehaviorComponent
 
         if (!IsInstanceValid(_allyTarget) || Position.DistanceTo(_allyTarget.Position) <= _followDistance)
         {
-            return GetIdleTargetLocation();
+            return ComponentUtils.IdleTargetLocation;
         }
 
         return _allyTarget.Position; // TODO: follow distance

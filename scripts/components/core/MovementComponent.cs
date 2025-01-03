@@ -13,6 +13,6 @@ public abstract partial class MovementComponent : Component
 
     protected bool IsIdleTargetLocation(Vector2 targetLocation)
     {
-        return targetLocation.DistanceTo(GetComponentOwner().Position) < 0.1;
+        return targetLocation == ComponentUtils.IdleTargetLocation;
     }
 }

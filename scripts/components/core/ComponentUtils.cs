@@ -19,6 +19,7 @@ public static class ComponentUtils
 
     /* Movement Scenes */
     private static readonly PackedScene GlideMovementScene = LoadScene(MovementPath, "glide_movement.tscn");
+    private static readonly PackedScene HoverMovementScene = LoadScene(MovementPath, "hover_movement.tscn");
 
     /* Attack Scenes */
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
@@ -41,6 +42,9 @@ public static class ComponentUtils
     /* Defense Defaults */
     public const int DefaultMaxHealth = 10;
 
+    /* Utility Constants */
+    public static readonly Vector2 IdleTargetLocation = new(-1, -1);
+
     public enum ComponentCategory
     {
         Behavior,
@@ -59,7 +63,7 @@ public static class ComponentUtils
 
         /** Movement Component Types **/
         GlideMovement,
-        // HoverMovement
+        HoverMovement,
         // BoostMovement
 
         /** Attack Component Types **/
@@ -83,6 +87,7 @@ public static class ComponentUtils
     private static readonly List<ComponentType> MovementComponentTypes = new()
     {
         ComponentType.GlideMovement,
+        ComponentType.HoverMovement,
     };
 
     private static readonly List<ComponentType> AttackComponentTypes = new()
@@ -116,6 +121,7 @@ public static class ComponentUtils
 
         // Movement Component Types
         { ComponentType.GlideMovement, GlideMovementScene },
+        { ComponentType.HoverMovement, HoverMovementScene },
 
         // Attack Component Types
         { ComponentType.ContactAttack, ContactAttackScene },

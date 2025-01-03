@@ -20,7 +20,7 @@ public partial class TargetEnemyBehavior : BehaviorComponent
 
         if (!IsInstanceValid(_enemyTarget))
         {
-            return GetIdleTargetLocation();
+            return ComponentUtils.IdleTargetLocation;
         }
 
         return _enemyTarget.Position;

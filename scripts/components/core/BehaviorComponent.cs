@@ -9,9 +9,4 @@ public abstract partial class BehaviorComponent : Component
     public abstract bool ShouldAttack(double delta);
 
     public abstract void OnCollision(KinematicCollision2D collision);
-
-    protected Vector2 GetIdleTargetLocation()
-    {
-        return GetComponentOwner().Position;
-    }
 }
