@@ -10,9 +10,8 @@ public partial class ContactAttack : AttackComponent
     private double _timeSinceLastAttack;
     private IDamageable _lastDamageableHit;
 
-    public override void Attack(double delta)
+    public override void Attack()
     {
-        _timeSinceLastAttack += delta;
     }
 
     public override void OnCollision(KinematicCollision2D collision)

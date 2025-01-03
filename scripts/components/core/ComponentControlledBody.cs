@@ -5,6 +5,7 @@ namespace minions.scripts.components.core;
 
 public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 {
+    private BehaviorComponent _behaviorComponent;
     private MovementComponent _movementComponent;
     private AttackComponent _attackComponent;
     private DefenseComponent _defenseComponent;
@@ -13,23 +14,26 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
-        SetMovementComponent(ComponentUtils.ComponentType.RandomMovement);
-        SetAttackComponent(ComponentUtils.ComponentType.ContactAttack);
-        SetDefenseComponent(ComponentUtils.ComponentType.BasicDefense);
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        Velocity = _movementComponent.GetVelocity(delta);
+        SetComponentsFromSelection(new ComponentSelection(
+            ComponentUtils.ComponentType.RandomBehavior,
+            ComponentUtils.ComponentType.GlideMovement,
+            ComponentUtils.ComponentType.ContactAttack,
+            ComponentUtils.ComponentType.BasicDefense
+        ));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
         base._Process(delta);
+        Vector2 targetLocation = _behaviorComponent?.GetTargetLocation(delta) ?? GlobalPosition;
+        Velocity = _movementComponent.GetVelocity(targetLocation, delta);
         LookAt(GlobalPosition + Velocity);
-        _attackComponent.Attack(delta);
+        if (_behaviorComponent != null && _behaviorComponent.ShouldAttack(delta))
+        {
+            _attackComponent.Attack();
+        }
+
         if (MoveAndSlide())
         {
             KinematicCollision2D collision = GetLastSlideCollision();
@@ -49,9 +53,18 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 
     protected void SetComponentsFromSelection(ComponentSelection selection)
     {
+        SetBehaviorComponent(selection.BehaviorComponentType);
         SetMovementComponent(selection.MovementComponentType);
         SetAttackComponent(selection.AttackComponentType);
         SetDefenseComponent(selection.DefenseComponentType);
+    }
+
+    public void SetBehaviorComponent(ComponentUtils.ComponentType componentType)
+    {
+        _behaviorComponent = ComponentUtils.AttachComponent<BehaviorComponent>(
+            this,
+            componentType
+        );
     }
 
     public void SetMovementComponent(ComponentUtils.ComponentType componentType)

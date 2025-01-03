@@ -6,21 +6,24 @@ namespace minions.scripts.components.core;
 public static class ComponentUtils
 {
     private const string ComponentsPath = "res://scenes/components";
+    private const string BehaviorPath = ComponentsPath + "/behavior";
     private const string MovementPath = ComponentsPath + "/movement";
     private const string AttackPath = ComponentsPath + "/attack";
     private const string DefensePath = ComponentsPath + "/defense";
 
+    /* Behavior Scenes */
+    private static readonly PackedScene PlayerBehaviorScene = LoadScene(BehaviorPath, "player_behavior.tscn");
+    private static readonly PackedScene RandomBehaviorScene = LoadScene(BehaviorPath, "random_behavior.tscn");
+    private static readonly PackedScene TargetEnemyBehaviorScene = LoadScene(BehaviorPath, "target_enemy_behavior.tscn");
+    private static readonly PackedScene FollowALlyBehaviorScene = LoadScene(BehaviorPath, "follow_ally_behavior.tscn");
+
     /* Movement Scenes */
-    private static readonly PackedScene PlayerMovementScene = LoadScene(MovementPath, "player_movement.tscn");
-    private static readonly PackedScene RandomMovementScene = LoadScene(MovementPath, "random_movement.tscn");
-    private static readonly PackedScene
-        TargetEnemyMovementScene = LoadScene(MovementPath, "target_enemy_movement.tscn");
-    private static readonly PackedScene FollowALlyMovementScene = LoadScene(MovementPath, "follow_ally_movement.tscn");
+    private static readonly PackedScene GlideMovementScene = LoadScene(MovementPath, "glide_movement.tscn");
 
     /* Attack Scenes */
-    private static readonly PackedScene PlayerAttackScene = LoadScene(AttackPath, "player_attack.tscn");
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
     private static readonly PackedScene AreaAttackScene = LoadScene(AttackPath, "area_attack.tscn");
+    private static readonly PackedScene MachineGunAttackScene = LoadScene(AttackPath, "machine_gun_attack.tscn");
 
     /* Defense Scenes */
     private static readonly PackedScene BasicDefenseScene = LoadScene(DefensePath, "basic_defense.tscn");
@@ -40,6 +43,7 @@ public static class ComponentUtils
 
     public enum ComponentCategory
     {
+        Behavior,
         Movement,
         Attack,
         Defense
@@ -48,15 +52,18 @@ public static class ComponentUtils
     public enum ComponentType
     {
         /** Behavior Component Types **/
+        PlayerBehavior,
+        RandomBehavior,
+        TargetEnemyBehavior,
+        FollowAllyBehavior,
 
         /** Movement Component Types **/
-        PlayerMovement,
-        RandomMovement,
-        TargetEnemyMovement,
-        FollowAllyMovement,
+        GlideMovement,
+        // HoverMovement
+        // BoostMovement
 
         /** Attack Component Types **/
-        PlayerAttack,
+        MachineGunAttack,
         ContactAttack,
         AreaAttack,
 
@@ -65,22 +72,27 @@ public static class ComponentUtils
         InvincibleDefense,
     }
 
-    public static readonly List<ComponentType> MovementComponentTypes = new()
+    private static readonly List<ComponentType> BehaviorComponentTypes = new()
     {
-        ComponentType.PlayerMovement,
-        ComponentType.RandomMovement,
-        ComponentType.TargetEnemyMovement,
-        ComponentType.FollowAllyMovement,
+        ComponentType.PlayerBehavior,
+        ComponentType.RandomBehavior,
+        ComponentType.TargetEnemyBehavior,
+        ComponentType.FollowAllyBehavior,
     };
 
-    public static readonly List<ComponentType> AttackComponentTypes = new()
+    private static readonly List<ComponentType> MovementComponentTypes = new()
     {
-        ComponentType.PlayerAttack,
+        ComponentType.GlideMovement,
+    };
+
+    private static readonly List<ComponentType> AttackComponentTypes = new()
+    {
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
+        ComponentType.MachineGunAttack,
     };
 
-    public static readonly List<ComponentType> DefenseComponentTypes = new()
+    private static readonly List<ComponentType> DefenseComponentTypes = new()
     {
         ComponentType.BasicDefense,
         ComponentType.InvincibleDefense
@@ -88,6 +100,7 @@ public static class ComponentUtils
 
     public static readonly Dictionary<ComponentCategory, List<ComponentType>> ComponentCategoryToType = new()
     {
+        {ComponentCategory.Behavior, BehaviorComponentTypes},
         {ComponentCategory.Movement, MovementComponentTypes},
         {ComponentCategory.Attack, AttackComponentTypes},
         {ComponentCategory.Defense, DefenseComponentTypes},
@@ -95,16 +108,19 @@ public static class ComponentUtils
 
     private static readonly Dictionary<ComponentType, PackedScene> TypeToScene = new()
     {
+        // Behavior Component Types
+        { ComponentType.PlayerBehavior, PlayerBehaviorScene },
+        { ComponentType.RandomBehavior, RandomBehaviorScene },
+        { ComponentType.TargetEnemyBehavior, TargetEnemyBehaviorScene },
+        { ComponentType.FollowAllyBehavior, FollowALlyBehaviorScene },
+
         // Movement Component Types
-        { ComponentType.PlayerMovement, PlayerMovementScene },
-        { ComponentType.RandomMovement, RandomMovementScene },
-        { ComponentType.TargetEnemyMovement, TargetEnemyMovementScene },
-        { ComponentType.FollowAllyMovement, FollowALlyMovementScene },
+        { ComponentType.GlideMovement, GlideMovementScene },
 
         // Attack Component Types
-        { ComponentType.PlayerAttack, PlayerAttackScene },
         { ComponentType.ContactAttack, ContactAttackScene },
         { ComponentType.AreaAttack, AreaAttackScene },
+        { ComponentType.MachineGunAttack, MachineGunAttackScene },
 
         // Defense Component Types
         { ComponentType.BasicDefense, BasicDefenseScene },

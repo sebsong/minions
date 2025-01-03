@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmqvi12mca2oa"]
+
+[ext_resource type="Script" path="res://scripts/components/behavior/RandomBehavior.cs" id="1_a88rh"]
+
+[node name="RandomBehavior" type="Node2D" node_paths=PackedStringArray("_targetLocationUpdateTimer", "_attackTimer")]
+script = ExtResource("1_a88rh")
+_targetLocationUpdateTimer = NodePath("TargetLocationUpdateTimer")
+_minTargetLocationUpdateTimerDuration = 0.5
+_maxTargetLocationUpdateTimerDuration = 2.0
+_minTargetLocationDist = 100.0
+_maxTargetLocationDist = 500.0
+_attackTimer = NodePath("AttackTimer")
+_minAttackTimerDuration = 0.5
+_maxAttackTimerDuration = 3.0
+
+[node name="TargetLocationUpdateTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true

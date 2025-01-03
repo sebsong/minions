@@ -1,34 +1,41 @@
+using System;
 using Godot;
 using Godot.Collections;
 using minions.scripts.components.core;
 
 namespace minions.scripts.components.movement;
 
-public partial class TargetEnemyMovement : MovementComponent
+public partial class TargetEnemyBehavior : BehaviorComponent
 {
-    public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.TargetEnemyMovement;
+    public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.TargetEnemyBehavior;
 
     private entities.Enemy _enemyTarget;
 
-    public override void _Ready()
-    {
-        base._Ready();
-        UpdateEnemyTarget();
-    }
-
-    public override Vector2 GetVelocity(double delta)
+    public override Vector2 GetTargetLocation(double delta)
     {
         if (!IsInstanceValid(_enemyTarget))
         {
             UpdateEnemyTarget();
         }
 
-        if (_enemyTarget == null)
+        if (!IsInstanceValid(_enemyTarget))
         {
-            return Vector2.Zero;
+            return GetIdleTargetLocation();
         }
 
-        return (_enemyTarget.Position - GlobalPosition).Normalized() * Speed;
+        return _enemyTarget.Position;
+    }
+
+    public override bool ShouldAttack(double delta)
+    {
+        return false; // TODO
+    }
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        UpdateEnemyTarget();
     }
 
     public override void OnCollision(KinematicCollision2D collision)

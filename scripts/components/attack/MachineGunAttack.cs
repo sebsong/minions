@@ -1,18 +1,17 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.entities;
 
 namespace minions.scripts.components.attack;
 
-public partial class PlayerAttack : AttackComponent
+public partial class MachineGunAttack : AttackComponent
 {
-    public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.PlayerAttack;
+    public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.MachineGunAttack;
 
     [Export] private PackedScene _bulletScene = ResourceLoader.Load<PackedScene>("res://scenes/entities/bullet.tscn");
     [Export] private Timer _shootCooldownTimer;
 
-    [Export] private float _bulletSpeed;
     [Export] private float _maxBulletSpread;
 
     private RandomNumberGenerator _rng = new();
@@ -39,20 +38,11 @@ public partial class PlayerAttack : AttackComponent
         }
     }
 
-    public override void Attack(double delta)
+    public override void Attack()
     {
-        HandleShooting();
-    }
-
-    public override void OnCollision(KinematicCollision2D collision)
-    {
-    }
-
-    private void HandleShooting()
-    {
-        if (Input.IsActionPressed("shoot") && _canShoot && _currentBulletSpawnIndex != -1)
+        if (_canShoot && _currentBulletSpawnIndex != -1)
         {
-            entities.Bullet bullet = _bulletScene.Instantiate<entities.Bullet>();
+            Bullet bullet = _bulletScene.Instantiate<Bullet>();
             bullet.Speed = AttackSpeed;
             bullet.Damage = AttackDamage;
             Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];
@@ -65,6 +55,10 @@ public partial class PlayerAttack : AttackComponent
             _shootCooldownTimer.Start();
             _currentBulletSpawnIndex = (_currentBulletSpawnIndex + 1) % _bulletSpawns.Count;
         }
+    }
+
+    public override void OnCollision(KinematicCollision2D collision)
+    {
     }
 
     private void OnShootCooldownTimerTimeout()

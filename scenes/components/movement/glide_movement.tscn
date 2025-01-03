@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b42ri0setsbt1"]
+
+[ext_resource type="Script" path="res://scripts/components/movement/GlideMovement.cs" id="1_72wgx"]
+
+[node name="GlideMovement" type="Node2D"]
+script = ExtResource("1_72wgx")
+Speed = 200.0
+TurnSpeed = 200.0

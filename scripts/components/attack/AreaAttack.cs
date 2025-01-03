@@ -21,7 +21,7 @@ public partial class AreaAttack : AttackComponent
         _attackTimer.Start(AttackCooldown);
     }
 
-    public override void Attack(double delta)
+    public override void Attack()
     {
     }
 
