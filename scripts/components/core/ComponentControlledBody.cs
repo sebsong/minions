@@ -29,7 +29,6 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         LocationInput locationInput = _behaviorComponent?.GetLocationInput(delta) ??
                                       new LocationInput(false, ComponentUtils.IdleTargetLocation);
         Velocity = _movementComponent.GetVelocity(locationInput, delta);
-        LookAt(GlobalPosition + Velocity);
         if (_behaviorComponent != null && _behaviorComponent.ShouldAttack(delta))
         {
             _attackComponent.Attack();

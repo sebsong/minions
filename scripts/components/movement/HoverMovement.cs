@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using minions.scripts.components.core;
 
@@ -14,13 +15,16 @@ public partial class HoverMovement : MovementComponent
 
     protected override Vector2 GetVelocityForTargetLocation(Vector2 targetLocation, double delta)
     {
-        if (IsIdleTargetLocation(targetLocation))
+        if (IsIdleTargetLocation(targetLocation) || targetLocation == GetComponentOwner().GlobalPosition)
         {
             return Vector2.Zero;
         }
 
-        Vector2 direction = GetComponentOwner().Position.DirectionTo(targetLocation);
+        Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
+        Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
+        GetComponentOwner().LookAt(lookAtTarget);
 
+        Vector2 direction = GetComponentOwner().GlobalPosition.DirectionTo(targetLocation);
         return direction * Speed;
     }
 

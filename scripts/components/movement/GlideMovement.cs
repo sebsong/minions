@@ -40,18 +40,9 @@ public partial class GlideMovement : MovementComponent
             location = GetComponentOwner().ToGlobal(Vector2.Down);
         }
 
-        TurnTowardTargetLocation(location, delta);
+        _currentVelocity = GetRotatedDirection(_currentVelocity, location, delta);
+        GetComponentOwner().LookAt(GetComponentOwner().GlobalPosition + _currentVelocity);
         return _currentVelocity;
-    }
-
-    private void TurnTowardTargetLocation(Vector2 targetLocation, double delta)
-    {
-        float angleToDestination = GetComponentOwner().GetAngleTo(targetLocation);
-        float amountToTurn = (float)Mathf.Min(
-            Mathf.Abs(angleToDestination),
-            Mathf.Abs(TurnSpeed / 180 * Mathf.Pi * delta)
-        );
-        _currentVelocity = _currentVelocity.Rotated(Math.Sign(angleToDestination) * amountToTurn);
     }
 
     public override void OnCollision(KinematicCollision2D collision)
