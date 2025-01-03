@@ -15,6 +15,7 @@ public static class ComponentUtils
     private static readonly PackedScene PlayerBehaviorScene = LoadScene(BehaviorPath, "player_behavior.tscn");
     private static readonly PackedScene RandomBehaviorScene = LoadScene(BehaviorPath, "random_behavior.tscn");
     private static readonly PackedScene TargetEnemyBehaviorScene = LoadScene(BehaviorPath, "target_enemy_behavior.tscn");
+    private static readonly PackedScene FollowALlyBehaviorScene = LoadScene(BehaviorPath, "follow_ally_behavior.tscn");
 
     /* Movement Scenes */
     private static readonly PackedScene
@@ -56,7 +57,7 @@ public static class ComponentUtils
         /** Behavior Component Types **/
         PlayerBehavior,
         RandomBehavior,
-        TargetEnemyBehavior, // TODO
+        TargetEnemyBehavior,
         FollowAllyBehavior, // TODO
 
         /** Movement Component Types **/
@@ -118,6 +119,7 @@ public static class ComponentUtils
         { ComponentType.PlayerBehavior, PlayerBehaviorScene },
         { ComponentType.RandomBehavior, RandomBehaviorScene },
         { ComponentType.TargetEnemyBehavior, TargetEnemyBehaviorScene },
+        { ComponentType.FollowAllyBehavior, FollowALlyBehaviorScene },
 
         // Movement Component Types
         { ComponentType.TargetEnemyMovement, TargetEnemyMovementScene },
