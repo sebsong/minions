@@ -11,16 +11,12 @@ public partial class ComponentSelectorMenu : Control
 
     [Export]
     private HBoxContainer _componentSelectorContainer;
-    [Export]
-    private Button _confirmButton;
 
     private Dictionary<ComponentUtils.ComponentCategory, ComponentSelector> _componentSelectors = new();
 
     public override void _Ready()
     {
         base._Ready();
-
-        _confirmButton.Pressed += OnConfirmButtonPressed;
 
         foreach (ComponentUtils.ComponentCategory category in Enum.GetValues(typeof(ComponentUtils.ComponentCategory)))
         {
@@ -31,23 +27,18 @@ public partial class ComponentSelectorMenu : Control
         }
     }
 
-    private void OnConfirmButtonPressed()
-    {
-        CurrentSelectionGlobal.Instance.CurrentPlayerSelection = GetSelection();
-        GetTree().ChangeSceneToFile("res://scenes/main.tscn");
-    }
 
-    private ComponentSelection GetSelection()
+    public ComponentConfiguration GetConfiguration()
     {
-        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict = new();
+        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> configurationDict = new();
         foreach (var (category, selector) in _componentSelectors)
         {
             if (selector.SelectedComponentButton != null)
             {
-                selectionDict[category] = selector.SelectedComponentButton.Type;
+                configurationDict[category] = selector.SelectedComponentButton.Type;
             }
         }
 
-        return new ComponentSelection(selectionDict);
+        return new ComponentConfiguration(configurationDict);
     }
 }

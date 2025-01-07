@@ -5,6 +5,7 @@ namespace minions.scripts.components.core;
 
 public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 {
+    public int Index;
     private BehaviorComponent _behaviorComponent;
     private MovementComponent _movementComponent;
     private AttackComponent _attackComponent;
@@ -14,12 +15,9 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
-        SetComponentsFromSelection(new ComponentSelection(
-            ComponentUtils.ComponentType.RandomBehavior,
-            ComponentUtils.ComponentType.GlideMovement,
-            ComponentUtils.ComponentType.ContactAttack,
-            ComponentUtils.ComponentType.BasicDefense
-        ));
+        SetComponentsFromConfiguration(
+            FleetManagementGlobal.Instance.Configurations[Index]
+        );
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,12 +49,12 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
         }
     }
 
-    protected void SetComponentsFromSelection(ComponentSelection selection)
+    protected void SetComponentsFromConfiguration(ComponentConfiguration configuration)
     {
-        SetBehaviorComponent(selection.BehaviorComponentType);
-        SetMovementComponent(selection.MovementComponentType);
-        SetAttackComponent(selection.AttackComponentType);
-        SetDefenseComponent(selection.DefenseComponentType);
+        SetBehaviorComponent(configuration.BehaviorComponentType);
+        SetMovementComponent(configuration.MovementComponentType);
+        SetAttackComponent(configuration.AttackComponentType);
+        SetDefenseComponent(configuration.DefenseComponentType);
     }
 
     public void SetBehaviorComponent(ComponentUtils.ComponentType componentType)

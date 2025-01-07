@@ -4,37 +4,37 @@ using Godot.Collections;
 
 namespace minions.scripts.components.core;
 
-public class ComponentSelection
+public class ComponentConfiguration
 {
     public readonly ComponentUtils.ComponentType BehaviorComponentType;
     public readonly ComponentUtils.ComponentType MovementComponentType;
     public readonly ComponentUtils.ComponentType AttackComponentType;
     public readonly ComponentUtils.ComponentType DefenseComponentType;
 
-    public ComponentSelection(
+    public ComponentConfiguration(
         ComponentUtils.ComponentType behaviorComponentType,
         ComponentUtils.ComponentType movementComponentType,
         ComponentUtils.ComponentType attackComponentType,
         ComponentUtils.ComponentType defenseComponentType
     )
     {
-        ValidateSelection(behaviorComponentType, movementComponentType, attackComponentType, defenseComponentType);
+        ValidateConfiguration(behaviorComponentType, movementComponentType, attackComponentType, defenseComponentType);
         BehaviorComponentType = behaviorComponentType;
         MovementComponentType = movementComponentType;
         AttackComponentType = attackComponentType;
         DefenseComponentType = defenseComponentType;
     }
 
-    public ComponentSelection(Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict)
+    public ComponentConfiguration(Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> configurationDict)
     {
-        ValidateSelectionDict(selectionDict);
-        BehaviorComponentType = selectionDict[ComponentUtils.ComponentCategory.Behavior];
-        MovementComponentType = selectionDict[ComponentUtils.ComponentCategory.Movement];
-        AttackComponentType = selectionDict[ComponentUtils.ComponentCategory.Attack];
-        DefenseComponentType = selectionDict[ComponentUtils.ComponentCategory.Defense];
+        ValidateConfigurationDict(configurationDict);
+        BehaviorComponentType = configurationDict[ComponentUtils.ComponentCategory.Behavior];
+        MovementComponentType = configurationDict[ComponentUtils.ComponentCategory.Movement];
+        AttackComponentType = configurationDict[ComponentUtils.ComponentCategory.Attack];
+        DefenseComponentType = configurationDict[ComponentUtils.ComponentCategory.Defense];
     }
 
-    private static void ValidateSelection(
+    private static void ValidateConfiguration(
         ComponentUtils.ComponentType behaviorComponentType,
         ComponentUtils.ComponentType movementComponentType,
         ComponentUtils.ComponentType attackComponentType,
@@ -47,7 +47,7 @@ public class ComponentSelection
         ValidateTypeBelongsToCategory(defenseComponentType, ComponentUtils.ComponentCategory.Defense);
     }
 
-    private static void ValidateSelectionDict(
+    private static void ValidateConfigurationDict(
         Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> selectionDict)
     {
         foreach (ComponentUtils.ComponentCategory category in Enum.GetValues(typeof(ComponentUtils.ComponentCategory)))

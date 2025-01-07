@@ -6,8 +6,8 @@ public partial class Enemy : ComponentControlledBody
 {
     public override void _Ready()
     {
-        base._Ready();
-        SetComponentsFromSelection(new ComponentSelection(
+        // base._Ready();
+        SetComponentsFromConfiguration(new ComponentConfiguration(
             ComponentUtils.ComponentType.RandomBehavior,
             ComponentUtils.ComponentType.GlideMovement,
             ComponentUtils.ComponentType.ContactAttack,

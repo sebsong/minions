@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://by4yk2co0cyv3"]
+[gd_scene load_steps=6 format=3 uid="uid://by4yk2co0cyv3"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="1_nfebl"]
-[ext_resource type="PackedScene" uid="uid://cbrcdax58qkla" path="res://scenes/entities/minion.tscn" id="2_i06yn"]
-[ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/entities/enemy.tscn" id="3_m3n6m"]
-[ext_resource type="PackedScene" uid="uid://dpo16bk8er14u" path="res://scenes/entities/player.tscn" id="6_u84ty"]
 [ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="7_w6sks"]
 [ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="8_k78y2"]
 
@@ -19,9 +16,11 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 6.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_cloudParticles")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_machineSpawnPoint")]
 script = ExtResource("1_l21ws")
 _cloudParticles = NodePath("CloudParticles")
+_machineSpawnPoint = NodePath("MachineSpawnPoint")
+_spawnTime = 1.0
 
 [node name="wall" parent="." instance=ExtResource("1_nfebl")]
 position = Vector2(-21, 678)
@@ -41,23 +40,12 @@ position = Vector2(894, -18)
 rotation = 1.5708
 scale = Vector2(0.43, 20)
 
-[node name="Minion" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(839, 353)
-
-[node name="Minion2" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(766, 420)
-
-[node name="Minion3" parent="." instance=ExtResource("2_i06yn")]
-position = Vector2(866, 429)
-
-[node name="Player" parent="." instance=ExtResource("6_u84ty")]
-position = Vector2(525, 368)
-
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(759, 477)
 scale = Vector2(2000, 2000)
 texture = ExtResource("7_w6sks")
+metadata/_edit_lock_ = true
 
 [node name="CloudParticles" type="GPUParticles2D" parent="."]
 z_index = -1
@@ -68,11 +56,7 @@ texture = ExtResource("8_k78y2")
 lifetime = 200.0
 randomness = 1.0
 
-[node name="Enemy" parent="." instance=ExtResource("3_m3n6m")]
-position = Vector2(197, 148)
+[node name="MachineSpawnPoint" type="Node2D" parent="."]
+position = Vector2(800, 450)
 
-[node name="Enemy2" parent="." instance=ExtResource("3_m3n6m")]
-position = Vector2(1373, 553)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_m3n6m")]
-position = Vector2(300, 699)
+[node name="SpawnTimer" type="Timer" parent="."]
