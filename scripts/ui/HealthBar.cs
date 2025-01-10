@@ -1,6 +1,6 @@
 using Godot;
 
-namespace minions.scripts;
+namespace minions.scripts.ui;
 
 public partial class HealthBar : Node2D
 {

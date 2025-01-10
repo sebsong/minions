@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bq75mnvqv621p"]
 
-[ext_resource type="Script" path="res://scripts/AudioManager.cs" id="1_1in1d"]
+[ext_resource type="Script" path="res://scripts/AudioManagerGlobal.cs" id="1_1in1d"]
 [ext_resource type="AudioStream" uid="uid://de0dfjb32ctub" path="res://sounds/shoot.wav" id="2_pr1n4"]
 [ext_resource type="AudioStream" uid="uid://dj5rgexun26m6" path="res://sounds/explode.wav" id="3_ld22v"]
 [ext_resource type="AudioStream" uid="uid://ca257lv5nc8cb" path="res://sounds/hit.wav" id="4_rad77"]

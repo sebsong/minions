@@ -16,7 +16,7 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     {
         base._Ready();
         SetComponentsFromConfiguration(
-            FleetManagementGlobal.Instance.Configurations[Index]
+            RunGlobal.Instance.FleetConfigurations[Index]
         );
     }
 

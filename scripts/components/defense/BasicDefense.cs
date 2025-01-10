@@ -1,5 +1,6 @@
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.ui;
 
 namespace minions.scripts.components.defense;
 

@@ -35,7 +35,7 @@ public partial class Main : Node2D
 
     private async void SpawnBodies()
     {
-        for (int i = 0; i < FleetManagementGlobal.Instance.FleetSize; i++)
+        for (int i = 0; i < RunGlobal.Instance.FleetConfigurations.Count; i++)
         {
             SpawnBodyFromConfiguration(i);
             await ToSignal(GetTree().CreateTimer(_spawnTime), SceneTreeTimer.SignalName.Timeout);

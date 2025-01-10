@@ -25,7 +25,6 @@ public partial class FleetManagementMenu : Control
 
     private void OnAddMachineButtonPressed()
     {
-        FleetManagementGlobal.Instance.FleetSize++;
         ComponentSelectorMenu menu = ComponentSelectorMenuScene.Instantiate<ComponentSelectorMenu>();
         menu.RemoveMachineButton.Pressed += () => OnRemoveMachineButtonPressed(menu);
         _componentSelectorMenus.Add(menu);
@@ -42,7 +41,7 @@ public partial class FleetManagementMenu : Control
     {
         foreach (ComponentSelectorMenu menu in _componentSelectorMenus)
         {
-            FleetManagementGlobal.Instance.AddConfiguration(menu.GetConfiguration());
+            RunGlobal.Instance.AddConfiguration(menu.GetConfiguration());
         }
         GetTree().ChangeSceneToFile("res://scenes/main.tscn");
     }
