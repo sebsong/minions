@@ -12,6 +12,9 @@ public partial class ComponentSelectorMenu : Control
     [Export]
     private HBoxContainer _componentSelectorContainer;
 
+    [Export]
+    public Button RemoveMachineButton;
+
     private Dictionary<ComponentUtils.ComponentCategory, ComponentSelector> _componentSelectors = new();
 
     public override void _Ready()

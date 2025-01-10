@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/ComponentSelectorMenu.cs" id="1_husdp"]
 
-[node name="ComponentSelectorMenu" type="AspectRatioContainer" node_paths=PackedStringArray("_componentSelectorContainer")]
+[node name="ComponentSelectorMenu" type="AspectRatioContainer" node_paths=PackedStringArray("_componentSelectorContainer", "RemoveMachineButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,6 +12,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_husdp")
 _componentSelectorContainer = NodePath("ComponentSelectorContainer")
+RemoveMachineButton = NodePath("RemoveMachineButton")
 
 [node name="ComponentSelectorContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="RemoveMachineButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Remove Machine"

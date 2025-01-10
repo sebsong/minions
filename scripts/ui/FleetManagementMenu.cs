@@ -27,8 +27,15 @@ public partial class FleetManagementMenu : Control
     {
         FleetManagementGlobal.Instance.FleetSize++;
         ComponentSelectorMenu menu = ComponentSelectorMenuScene.Instantiate<ComponentSelectorMenu>();
+        menu.RemoveMachineButton.Pressed += () => OnRemoveMachineButtonPressed(menu);
         _componentSelectorMenus.Add(menu);
         _selectorMenusContainer.AddChild(menu);
+    }
+
+    private void OnRemoveMachineButtonPressed(ComponentSelectorMenu menu)
+    {
+        _componentSelectorMenus.Remove(menu);
+        _selectorMenusContainer.RemoveChild(menu);
     }
 
     private void OnConfirmButtonPressed()
