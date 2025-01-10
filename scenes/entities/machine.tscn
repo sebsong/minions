@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpo16bk8er14u"]
+[gd_scene load_steps=19 format=3 uid="uid://dpo16bk8er14u"]
 
-[ext_resource type="Script" path="res://scripts/entities/Player.cs" id="1_cpvl1"]
-[ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_fiwlp"]
+[ext_resource type="Script" path="res://scripts/components/core/Machine.cs" id="1_e201t"]
+[ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_1caxy"]
+[ext_resource type="PackedScene" uid="uid://dfud57bvmappa" path="res://scenes/scrap_storage.tscn" id="3_jpega"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]
 size = Vector2(128, 544)
@@ -10,51 +11,51 @@ size = Vector2(128, 544)
 size = Vector2(120, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66eex"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(0, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iw307"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(17, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0elrw"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(34, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eadp"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(51, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf1px"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(68, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7kec"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(85, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nhkph"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(102, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vqmv"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(119, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gss1"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(136, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0b8gr"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(153, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mw3mf"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(170, 0, 17, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2k6o"]
-atlas = ExtResource("2_fiwlp")
+atlas = ExtResource("2_1caxy")
 region = Rect2(187, 0, 17, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8m8gb"]
@@ -101,10 +102,11 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("_scrapStorage")]
 scale = Vector2(0.25, 0.25)
 motion_mode = 1
-script = ExtResource("1_cpvl1")
+script = ExtResource("1_e201t")
+_scrapStorage = NodePath("ScrapStorage")
 
 [node name="WingCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 0)
@@ -127,3 +129,7 @@ position = Vector2(60, -36)
 
 [node name="BulletSpawnRight" type="Node2D" parent="." groups=["bulletSpawns"]]
 position = Vector2(60, 28)
+
+[node name="ScrapStorage" parent="." instance=ExtResource("3_jpega")]
+position = Vector2(-96, 0)
+rotation = 1.5708

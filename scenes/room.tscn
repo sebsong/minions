@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://by4yk2co0cyv3"]
 
-[ext_resource type="Script" path="res://scripts/Main.cs" id="1_l21ws"]
-[ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="1_nfebl"]
-[ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="7_w6sks"]
-[ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="8_k78y2"]
+[ext_resource type="Script" path="res://scripts/Room.cs" id="1_l6u58"]
+[ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="2_oa5yw"]
+[ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="3_5cmdk"]
+[ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="4_3yvj5"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k5jj"]
 particle_flag_disable_z = true
@@ -16,26 +16,26 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 6.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_machineSpawnPoint")]
-script = ExtResource("1_l21ws")
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_machineSpawnPoint")]
+script = ExtResource("1_l6u58")
 _cloudParticles = NodePath("CloudParticles")
 _machineSpawnPoint = NodePath("MachineSpawnPoint")
 _spawnTime = 1.0
 
-[node name="wall" parent="." instance=ExtResource("1_nfebl")]
+[node name="wall" parent="." instance=ExtResource("2_oa5yw")]
 position = Vector2(-21, 678)
 scale = Vector2(0.43, 15)
 
-[node name="wall2" parent="." instance=ExtResource("1_nfebl")]
+[node name="wall2" parent="." instance=ExtResource("2_oa5yw")]
 position = Vector2(1620, 419)
 scale = Vector2(0.43, 15)
 
-[node name="wall3" parent="." instance=ExtResource("1_nfebl")]
+[node name="wall3" parent="." instance=ExtResource("2_oa5yw")]
 position = Vector2(714, 919)
 rotation = 1.5708
 scale = Vector2(0.43, 20)
 
-[node name="wall4" parent="." instance=ExtResource("1_nfebl")]
+[node name="wall4" parent="." instance=ExtResource("2_oa5yw")]
 position = Vector2(894, -18)
 rotation = 1.5708
 scale = Vector2(0.43, 20)
@@ -44,7 +44,7 @@ scale = Vector2(0.43, 20)
 z_index = -2
 position = Vector2(759, 477)
 scale = Vector2(2000, 2000)
-texture = ExtResource("7_w6sks")
+texture = ExtResource("3_5cmdk")
 metadata/_edit_lock_ = true
 
 [node name="CloudParticles" type="GPUParticles2D" parent="."]
@@ -52,7 +52,7 @@ z_index = -1
 position = Vector2(-14, 440)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_2k5jj")
-texture = ExtResource("8_k78y2")
+texture = ExtResource("4_3yvj5")
 lifetime = 200.0
 randomness = 1.0
 

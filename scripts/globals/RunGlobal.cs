@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Godot;
 using minions.scripts.components.core;
 
-namespace minions.scripts;
+namespace minions.scripts.globals;
 
 public partial class RunGlobal : Node
 {

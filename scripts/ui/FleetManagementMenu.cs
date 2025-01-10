@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using minions.scripts.globals;
 
 namespace minions.scripts.ui;
 
@@ -43,6 +44,6 @@ public partial class FleetManagementMenu : Control
         {
             RunGlobal.Instance.AddConfiguration(menu.GetConfiguration());
         }
-        GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/room.tscn");
     }
 }

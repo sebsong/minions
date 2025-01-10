@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq75mnvqv621p"]
+
+[ext_resource type="Script" path="res://scripts/globals/AudioManagerGlobal.cs" id="1_bqm1m"]
+[ext_resource type="AudioStream" uid="uid://de0dfjb32ctub" path="res://sounds/shoot.wav" id="2_mytlj"]
+[ext_resource type="AudioStream" uid="uid://dj5rgexun26m6" path="res://sounds/explode.wav" id="3_otfyg"]
+[ext_resource type="AudioStream" uid="uid://ca257lv5nc8cb" path="res://sounds/hit.wav" id="4_bbe2l"]
+
+[node name="AudioManagerGlobal" type="Node2D" node_paths=PackedStringArray("BulletAudio", "HitAudio", "ExplodeAudio")]
+script = ExtResource("1_bqm1m")
+BulletAudio = NodePath("BulletAudioPlayer")
+HitAudio = NodePath("HitAudioPlayer")
+ExplodeAudio = NodePath("ExplodeAudioPlayer")
+
+[node name="BulletAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_mytlj")
+volume_db = 5.0
+
+[node name="ExplodeAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_otfyg")
+
+[node name="HitAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bbe2l")
+volume_db = 5.0

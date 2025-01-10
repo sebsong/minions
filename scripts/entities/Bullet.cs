@@ -1,5 +1,6 @@
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.globals;
 
 namespace minions.scripts.entities;
 
@@ -17,7 +18,7 @@ public partial class Bullet : Node2D
 	public override void _Ready()
 	{
 		_hitBox.BodyEntered += OnHitBoxBodyEntered;
-		AudioManager.Instance.BulletAudio.Play();
+		AudioManagerGlobal.Instance.BulletAudio.Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,12 +1,13 @@
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.globals;
 
 namespace minions.scripts;
 
-public partial class Main : Node2D
+public partial class Room : Node2D
 {
-    private PackedScene _componentControlledBodyScene =
-        ResourceLoader.Load<PackedScene>("res://scenes/entities/player.tscn");
+    private PackedScene _machineScene =
+        ResourceLoader.Load<PackedScene>("res://scenes/entities/machine.tscn");
 
     [Export] private GpuParticles2D _cloudParticles;
 
@@ -44,9 +45,9 @@ public partial class Main : Node2D
 
     private void SpawnBodyFromConfiguration(int index)
     {
-        ComponentControlledBody body = _componentControlledBodyScene.Instantiate<ComponentControlledBody>();
+        Machine body = _machineScene.Instantiate<Machine>();
         body.Position = _machineSpawnPoint.Position;
-        body.Index = index;
+        body.FleetIndex = index;
         AddChild(body);
     }
 }

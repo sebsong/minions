@@ -1,11 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci18r38edkf4k"]
+[gd_scene load_steps=2 format=3 uid="uid://ci18r38edkf4k"]
 
 [ext_resource type="Script" path="res://scripts/components/defense/BasicDefense.cs" id="1_qdcef"]
-[ext_resource type="PackedScene" uid="uid://cicxxe885qgxc" path="res://scenes/ui/health_bar.tscn" id="2_0get7"]
 
-[node name="BasicDefense" type="Node2D" node_paths=PackedStringArray("_healthBar")]
+[node name="BasicDefense" type="Node2D"]
 script = ExtResource("1_qdcef")
-_healthBar = NodePath("HealthBar")
-
-[node name="HealthBar" parent="." instance=ExtResource("2_0get7")]
-position = Vector2(0, 75)

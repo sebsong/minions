@@ -1,11 +1,15 @@
 using Godot;
 using minions.scripts.entities;
+using minions.scripts.globals;
 
 namespace minions.scripts.components.core;
 
-public partial class ComponentControlledBody : CharacterBody2D, IDamageable
+public partial class Machine : CharacterBody2D, IDamageable
 {
-    public int Index;
+    [Export]
+    private ScrapStorage _scrapStorage;
+
+    public int FleetIndex;
     private BehaviorComponent _behaviorComponent;
     private MovementComponent _movementComponent;
     private AttackComponent _attackComponent;
@@ -15,8 +19,10 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
+        _scrapStorage.OnScrapDepleted += OnScrapDepleted;
+        _scrapStorage.OnScrapFinalBlow += Die;
         SetComponentsFromConfiguration(
-            RunGlobal.Instance.FleetConfigurations[Index]
+            RunGlobal.Instance.FleetConfigurations[FleetIndex]
         );
     }
 
@@ -42,11 +48,23 @@ public partial class ComponentControlledBody : CharacterBody2D, IDamageable
 
     public void TakeDamage(int amount)
     {
-        _defenseComponent.TakeDamage(amount);
+        int scrapToRemove = _defenseComponent.ResolveDamage(amount);
+        _scrapStorage.ModifyScrap(-scrapToRemove);
         if (this is not Player)
         {
-            AudioManager.Instance.HitAudio.Play();
+            AudioManagerGlobal.Instance.HitAudio.Play();
         }
+    }
+
+    private void OnScrapDepleted()
+    {
+        GD.Print("SCRAP CRITICAL");
+    }
+
+    private void Die()
+    {
+        AudioManagerGlobal.Instance.ExplodeAudio.Play();
+        QueueFree();
     }
 
     protected void SetComponentsFromConfiguration(ComponentConfiguration configuration)
