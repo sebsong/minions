@@ -102,11 +102,11 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("_scrapStorage")]
+[node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("ScrapStorage")]
 scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_e201t")
-_scrapStorage = NodePath("ScrapStorage")
+ScrapStorage = NodePath("ScrapStorage")
 
 [node name="WingCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 0)

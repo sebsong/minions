@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/components/attack/ContactAttack.cs" id="1_a4msn"]
 
-[node name="ContactAttack" type="Node2D"]
+[node name="ContactAttack" type="Node2D" node_paths=PackedStringArray("_cooldownTimer")]
 script = ExtResource("1_a4msn")
-AttackCooldown = 0.1
+_cooldownTimer = NodePath("CooldownTimer")
+AttackDamage = 5
+AttackCooldown = 0.5
+
+[node name="CooldownTimer" type="Timer" parent="."]

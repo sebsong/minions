@@ -1,11 +1,17 @@
 using Godot;
+using minions.scripts.components.core;
+using minions.scripts.entities;
 
 namespace minions.scripts;
 
 public partial class ScrapStorage : Node2D
 {
+    private static readonly PackedScene ScrapScene =
+        ResourceLoader.Load<PackedScene>("res://scenes/entities/scrap.tscn");
+
     [Signal]
     public delegate void OnScrapDepletedEventHandler();
+
     [Signal]
     public delegate void OnScrapFinalBlowEventHandler();
 
@@ -19,28 +25,47 @@ public partial class ScrapStorage : Node2D
         UpdateScrapText();
     }
 
-    public void ModifyScrap(int scrapUpdate)
+    public void AddScrap(int amount)
     {
-        int updatedScrap = _scrap + scrapUpdate;
-        if (updatedScrap <= 0)
+        _scrap += amount;
+        UpdateScrapText();
+    }
+
+    public void RemoveScrap(int amount, Node2D causer)
+    {
+        if (amount >= _scrap)
         {
-            if (_scrap <= 0)
-            {
-                EmitSignal(SignalName.OnScrapFinalBlow);
-            }
-            else
-            {
-                _scrap = 0;
-                EmitSignal(SignalName.OnScrapDepleted);
-            }
+            EmitSignal(_scrap <= 0 ? SignalName.OnScrapFinalBlow : SignalName.OnScrapDepleted);
         }
-        else
+
+        int adjustedAmount = Mathf.Min(amount, _scrap);
+        _scrap -= adjustedAmount;
+
+        if (causer is Machine machine)
         {
-            _scrap = updatedScrap;
+            SpawnScrap(machine.ScrapStorage, adjustedAmount);
         }
 
         UpdateScrapText();
     }
+
+    private void SpawnScrap(ScrapStorage target, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            SpawnScrap(target);
+        }
+    }
+
+    private void SpawnScrap(ScrapStorage target)
+    {
+        Scrap scrap = ScrapScene.Instantiate<Scrap>();
+        scrap.GlobalPosition = GlobalPosition;
+        //TODO: launch scrap
+        scrap.TargetStorage = target;
+        GetTree().CurrentScene.CallDeferred(Node.MethodName.AddChild, scrap);
+    }
+
 
     private void UpdateScrapText()
     {

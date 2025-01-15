@@ -1,5 +1,6 @@
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.entities;
 
 namespace minions.scripts.components.attack;
 
@@ -33,7 +34,7 @@ public partial class AreaAttack : AttackComponent
     {
         if (body is IDamageable damageable)
         {
-            damageable.TakeDamage(AttackDamage);
+            damageable.TakeDamage(AttackDamage, GetComponentOwner());
         }
     }
 
