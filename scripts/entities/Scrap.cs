@@ -11,7 +11,6 @@ public partial class Scrap : Node2D
 
     public override void _Ready()
     {
-        GD.Print("Scrap Ready");
         base._Ready();
         _area.AreaEntered += OnAreaEntered;
     }
@@ -19,13 +18,16 @@ public partial class Scrap : Node2D
     public override void _Process(double delta)
     {
         base._Process(delta);
-        Vector2 direction = Position.DirectionTo(TargetStorage.Position);
-        Position += direction * (float)(_speed * delta);
+        if (IsInstanceValid(TargetStorage))
+        {
+            Vector2 direction = GlobalPosition.DirectionTo(TargetStorage.GlobalPosition);
+            GlobalPosition += direction * (float)(_speed * delta);
+        }
     }
 
     private void OnAreaEntered(Area2D area)
     {
-        if (area.GetOwner() is ScrapStorage storage)
+        if (area.GetOwner() is ScrapStorage storage && storage == TargetStorage)
         {
             storage.AddScrap(1);
             QueueFree();

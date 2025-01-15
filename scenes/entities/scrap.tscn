@@ -7,10 +7,9 @@
 size = Vector2(10, 13)
 
 [node name="Scrap" type="Node2D" node_paths=PackedStringArray("_area")]
-scale = Vector2(5, 5)
 script = ExtResource("1_ds35u")
 _area = NodePath("Area2D")
-_speed = 10.0
+_speed = 500.0
 
 [node name="Area2D" type="Area2D" parent="."]
 

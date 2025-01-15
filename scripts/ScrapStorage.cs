@@ -33,38 +33,37 @@ public partial class ScrapStorage : Node2D
 
     public void RemoveScrap(int amount, Node2D causer)
     {
-        int updatedScrap = _scrap - amount;
-        if (updatedScrap <= 0)
+        if (amount >= _scrap)
         {
-            if (_scrap <= 0)
-            {
-                EmitSignal(SignalName.OnScrapFinalBlow);
-            }
-            else
-            {
-                _scrap = 0;
-                EmitSignal(SignalName.OnScrapDepleted);
-            }
+            EmitSignal(_scrap <= 0 ? SignalName.OnScrapFinalBlow : SignalName.OnScrapDepleted);
         }
-        else
-        {
-            _scrap = updatedScrap;
-        }
+
+        int adjustedAmount = Mathf.Min(amount, _scrap);
+        _scrap -= adjustedAmount;
 
         if (causer is Machine machine)
         {
-            SpawnScrap(machine.ScrapStorage);
+            SpawnScrap(machine.ScrapStorage, adjustedAmount);
         }
+
         UpdateScrapText();
+    }
+
+    private void SpawnScrap(ScrapStorage target, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            SpawnScrap(target);
+        }
     }
 
     private void SpawnScrap(ScrapStorage target)
     {
         Scrap scrap = ScrapScene.Instantiate<Scrap>();
-        scrap.Position = Position;
+        scrap.GlobalPosition = GlobalPosition;
         //TODO: launch scrap
         scrap.TargetStorage = target;
-        GetTree().GetRoot().CallDeferred(Node.MethodName.AddChild, scrap);
+        GetTree().CurrentScene.CallDeferred(Node.MethodName.AddChild, scrap);
     }
 
 
