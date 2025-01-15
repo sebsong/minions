@@ -13,6 +13,7 @@ public partial class Bullet : Node2D
 	[Export] public float Speed = ComponentUtils.DefaultAttackSpeed;
 	[Export] public int Damage = ComponentUtils.DefaultAttackDamage;
 
+	public Node2D Shooter;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,7 +32,7 @@ public partial class Bullet : Node2D
 	{
 		if (body is IDamageable damageable)
 		{
-			damageable.TakeDamage(Damage);
+			damageable.TakeDamage(Damage, Shooter);
 			Explode();
 		}
 	}

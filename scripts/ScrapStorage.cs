@@ -1,11 +1,17 @@
 using Godot;
+using minions.scripts.components.core;
+using minions.scripts.entities;
 
 namespace minions.scripts;
 
 public partial class ScrapStorage : Node2D
 {
+    private static readonly PackedScene ScrapScene =
+        ResourceLoader.Load<PackedScene>("res://scenes/entities/scrap.tscn");
+
     [Signal]
     public delegate void OnScrapDepletedEventHandler();
+
     [Signal]
     public delegate void OnScrapFinalBlowEventHandler();
 
@@ -19,9 +25,15 @@ public partial class ScrapStorage : Node2D
         UpdateScrapText();
     }
 
-    public void ModifyScrap(int scrapUpdate)
+    public void AddScrap(int amount)
     {
-        int updatedScrap = _scrap + scrapUpdate;
+        _scrap += amount;
+        UpdateScrapText();
+    }
+
+    public void RemoveScrap(int amount, Node2D causer)
+    {
+        int updatedScrap = _scrap - amount;
         if (updatedScrap <= 0)
         {
             if (_scrap <= 0)
@@ -39,8 +51,22 @@ public partial class ScrapStorage : Node2D
             _scrap = updatedScrap;
         }
 
+        if (causer is Machine machine)
+        {
+            SpawnScrap(machine.ScrapStorage);
+        }
         UpdateScrapText();
     }
+
+    private void SpawnScrap(ScrapStorage target)
+    {
+        Scrap scrap = ScrapScene.Instantiate<Scrap>();
+        scrap.Position = Position;
+        //TODO: launch scrap
+        scrap.TargetStorage = target;
+        GetTree().GetRoot().CallDeferred(Node.MethodName.AddChild, scrap);
+    }
+
 
     private void UpdateScrapText()
     {

@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfud57bvmappa"]
+[gd_scene load_steps=3 format=3 uid="uid://dfud57bvmappa"]
 
 [ext_resource type="Script" path="res://scripts/ScrapStorage.cs" id="1_ftnxo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jnnmp"]
+radius = 31.0161
 
 [node name="ScrapStorage" type="Node2D" node_paths=PackedStringArray("_scrapText")]
 script = ExtResource("1_ftnxo")
 _scrapText = NodePath("ScrapText")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jnnmp")
 
 [node name="ScrapText" type="Label" parent="."]
 anchors_preset = 8

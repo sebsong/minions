@@ -43,6 +43,7 @@ public partial class MachineGunAttack : AttackComponent
         if (_canShoot && _currentBulletSpawnIndex != -1)
         {
             Bullet bullet = _bulletScene.Instantiate<Bullet>();
+            bullet.Shooter = GetComponentOwner();
             bullet.Speed = AttackSpeed;
             bullet.Damage = AttackDamage;
             Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];

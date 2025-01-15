@@ -1,5 +1,6 @@
 using Godot;
 using minions.scripts.components.core;
+using minions.scripts.entities;
 
 namespace minions.scripts.components.attack;
 
@@ -22,7 +23,7 @@ public partial class ContactAttack : AttackComponent
             {
                 return;
             }
-            damageable.TakeDamage(AttackDamage);
+            damageable.TakeDamage(AttackDamage, GetComponentOwner());
             _lastDamageableHit = damageable;
             _timeSinceLastAttack = 0;
         }

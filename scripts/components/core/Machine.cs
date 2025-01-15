@@ -6,8 +6,7 @@ namespace minions.scripts.components.core;
 
 public partial class Machine : CharacterBody2D, IDamageable
 {
-    [Export]
-    private ScrapStorage _scrapStorage;
+    [Export] public ScrapStorage ScrapStorage;
 
     public int FleetIndex;
     private BehaviorComponent _behaviorComponent;
@@ -19,8 +18,8 @@ public partial class Machine : CharacterBody2D, IDamageable
     public override void _Ready()
     {
         base._Ready();
-        _scrapStorage.OnScrapDepleted += OnScrapDepleted;
-        _scrapStorage.OnScrapFinalBlow += Die;
+        ScrapStorage.OnScrapDepleted += OnScrapDepleted;
+        ScrapStorage.OnScrapFinalBlow += Die;
         SetComponentsFromConfiguration(
             RunGlobal.Instance.FleetConfigurations[FleetIndex]
         );
@@ -46,10 +45,10 @@ public partial class Machine : CharacterBody2D, IDamageable
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, Node2D damageSource)
     {
         int scrapToRemove = _defenseComponent.ResolveDamage(amount);
-        _scrapStorage.ModifyScrap(-scrapToRemove);
+        ScrapStorage.RemoveScrap(scrapToRemove, damageSource);
         if (this is not Player)
         {
             AudioManagerGlobal.Instance.HitAudio.Play();
