@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManagerGlobal="*res://scenes/globals/audio_manager_global.tscn"
-RunGlobal="*res://scripts/globals/RunGlobal.cs"
+CurrentRunDataGlobal="*res://scripts/globals/CurrentRunDataGlobal.cs"
+SaveDataGlobal="*res://scripts/globals/SaveDataGlobal.cs"
 
 [display]
 

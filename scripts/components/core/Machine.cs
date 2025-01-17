@@ -21,7 +21,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         ScrapStorage.OnScrapDepleted += OnScrapDepleted;
         ScrapStorage.OnScrapFinalBlow += Die;
         SetComponentsFromConfiguration(
-            RunGlobal.Instance.FleetConfigurations[FleetIndex]
+            CurrentRunDataGlobal.Instance.FleetConfigurations[FleetIndex]
         );
     }
 

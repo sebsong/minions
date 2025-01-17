@@ -4,12 +4,17 @@ using Godot.Collections;
 
 namespace minions.scripts.components.core;
 
+[Serializable]
 public class ComponentConfiguration
 {
-    public readonly ComponentUtils.ComponentType BehaviorComponentType;
-    public readonly ComponentUtils.ComponentType MovementComponentType;
-    public readonly ComponentUtils.ComponentType AttackComponentType;
-    public readonly ComponentUtils.ComponentType DefenseComponentType;
+    public ComponentUtils.ComponentType BehaviorComponentType;
+    public ComponentUtils.ComponentType MovementComponentType;
+    public ComponentUtils.ComponentType AttackComponentType;
+    public ComponentUtils.ComponentType DefenseComponentType;
+
+    public ComponentConfiguration()
+    {
+    }
 
     public ComponentConfiguration(
         ComponentUtils.ComponentType behaviorComponentType,
@@ -25,13 +30,25 @@ public class ComponentConfiguration
         DefenseComponentType = defenseComponentType;
     }
 
-    public ComponentConfiguration(Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> configurationDict)
+    public ComponentConfiguration(
+        Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> configurationDict)
     {
         ValidateConfigurationDict(configurationDict);
         BehaviorComponentType = configurationDict[ComponentUtils.ComponentCategory.Behavior];
         MovementComponentType = configurationDict[ComponentUtils.ComponentCategory.Movement];
         AttackComponentType = configurationDict[ComponentUtils.ComponentCategory.Attack];
         DefenseComponentType = configurationDict[ComponentUtils.ComponentCategory.Defense];
+    }
+
+    public Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> ToDict()
+    {
+        return new()
+        {
+            { ComponentUtils.ComponentCategory.Behavior, BehaviorComponentType },
+            { ComponentUtils.ComponentCategory.Movement, MovementComponentType },
+            { ComponentUtils.ComponentCategory.Attack, AttackComponentType },
+            { ComponentUtils.ComponentCategory.Defense, DefenseComponentType },
+        };
     }
 
     private static void ValidateConfiguration(

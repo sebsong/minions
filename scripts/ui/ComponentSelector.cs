@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using minions.scripts.components.core;
 
 namespace minions.scripts.ui;
@@ -16,6 +17,7 @@ public partial class ComponentSelector : Control
     public ComponentUtils.ComponentCategory Category;
 
     public ComponentButton SelectedComponentButton { get; private set; }
+    private Dictionary<ComponentUtils.ComponentType, ComponentButton> _componentButtons = new();
 
     public override void _Ready()
     {
@@ -27,8 +29,15 @@ public partial class ComponentSelector : Control
             ComponentButton button = ComponentButtonScene.Instantiate<ComponentButton>();
             button.Type = type;
             button.Pressed += () => OnComponentButtonPressed(button);
+            _componentButtons[type] = button;
             _componentOptions.AddChild(button);
         }
+    }
+
+    public void SetSelectedComponent(ComponentUtils.ComponentType type)
+    {
+        SelectedComponentButton = _componentButtons[type];
+        SelectedComponentButton.SetPressed(true);
     }
 
     private void OnComponentButtonPressed(ComponentButton button)

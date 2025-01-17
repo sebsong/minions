@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using minions.scripts.components.core;
 using minions.scripts.globals;
 
 namespace minions.scripts.ui;
@@ -13,6 +14,7 @@ public partial class FleetManagementMenu : Control
 
     [Export] private Button _addMachineButton;
     [Export] private Button _confirmButton;
+    [Export] private Button _saveButton;
 
     private readonly HashSet<ComponentSelectorMenu> _componentSelectorMenus = new();
 
@@ -21,15 +23,13 @@ public partial class FleetManagementMenu : Control
         base._Ready();
         _addMachineButton.Pressed += OnAddMachineButtonPressed;
         _confirmButton.Pressed += OnConfirmButtonPressed;
-        OnAddMachineButtonPressed();
+        _saveButton.Pressed += OnSaveButtonPressed;
+        PopulateFromSaveFile();
     }
 
     private void OnAddMachineButtonPressed()
     {
-        ComponentSelectorMenu menu = ComponentSelectorMenuScene.Instantiate<ComponentSelectorMenu>();
-        menu.RemoveMachineButton.Pressed += () => OnRemoveMachineButtonPressed(menu);
-        _componentSelectorMenus.Add(menu);
-        _selectorMenusContainer.AddChild(menu);
+        AddMenu();
     }
 
     private void OnRemoveMachineButtonPressed(ComponentSelectorMenu menu)
@@ -42,8 +42,41 @@ public partial class FleetManagementMenu : Control
     {
         foreach (ComponentSelectorMenu menu in _componentSelectorMenus)
         {
-            RunGlobal.Instance.AddConfiguration(menu.GetConfiguration());
+            CurrentRunDataGlobal.Instance.AddConfiguration(menu.GetConfiguration());
         }
+
         GetTree().ChangeSceneToFile("res://scenes/room.tscn");
+    }
+
+    private void OnSaveButtonPressed()
+    {
+        List<ComponentConfiguration> configurations = new();
+        foreach (ComponentSelectorMenu menu in _componentSelectorMenus)
+        {
+            configurations.Add(menu.GetConfiguration());
+        }
+
+        SaveDataGlobal.Instance.FleetConfigurations = configurations;
+        SaveDataGlobal.SaveToFile();
+    }
+
+    private ComponentSelectorMenu AddMenu()
+    {
+        ComponentSelectorMenu menu = ComponentSelectorMenuScene.Instantiate<ComponentSelectorMenu>();
+        menu.RemoveMachineButton.Pressed += () => OnRemoveMachineButtonPressed(menu);
+        _componentSelectorMenus.Add(menu);
+        _selectorMenusContainer.AddChild(menu);
+        return menu;
+    }
+
+    private void PopulateFromSaveFile()
+    {
+        SaveDataGlobal.LoadFromFile();
+
+        foreach (ComponentConfiguration config in SaveDataGlobal.Instance.FleetConfigurations)
+        {
+            ComponentSelectorMenu menu = AddMenu();
+            menu.ApplyConfiguration(config);
+        }
     }
 }

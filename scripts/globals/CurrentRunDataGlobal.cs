@@ -5,9 +5,9 @@ using minions.scripts.components.core;
 
 namespace minions.scripts.globals;
 
-public partial class RunGlobal : Node
+public partial class CurrentRunDataGlobal : Node
 {
-    public static RunGlobal Instance;
+    public static CurrentRunDataGlobal Instance;
 
     public int Scrap;
 

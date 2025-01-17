@@ -7,13 +7,12 @@ namespace minions.scripts.ui;
 
 public partial class ComponentSelectorMenu : Control
 {
-    private static readonly PackedScene ComponentSelectorScene = ResourceLoader.Load<PackedScene>("res://scenes/ui/component_selector.tscn");
+    private static readonly PackedScene ComponentSelectorScene =
+        ResourceLoader.Load<PackedScene>("res://scenes/ui/component_selector.tscn");
 
-    [Export]
-    private HBoxContainer _componentSelectorContainer;
+    [Export] private HBoxContainer _componentSelectorContainer;
 
-    [Export]
-    public Button RemoveMachineButton;
+    [Export] public Button RemoveMachineButton;
 
     private Dictionary<ComponentUtils.ComponentCategory, ComponentSelector> _componentSelectors = new();
 
@@ -30,7 +29,6 @@ public partial class ComponentSelectorMenu : Control
         }
     }
 
-
     public ComponentConfiguration GetConfiguration()
     {
         Dictionary<ComponentUtils.ComponentCategory, ComponentUtils.ComponentType> configurationDict = new();
@@ -43,5 +41,15 @@ public partial class ComponentSelectorMenu : Control
         }
 
         return new ComponentConfiguration(configurationDict);
+    }
+
+    public void ApplyConfiguration(ComponentConfiguration config)
+    {
+        var configurationDict = config.ToDict();
+        foreach ((ComponentUtils.ComponentCategory category, ComponentUtils.ComponentType type) in configurationDict)
+        {
+            ComponentSelector selector = _componentSelectors[category];
+            selector.SetSelectedComponent(type);
+        }
     }
 }
