@@ -25,6 +25,7 @@ public static class ComponentUtils
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
     private static readonly PackedScene AreaAttackScene = LoadScene(AttackPath, "area_attack.tscn");
     private static readonly PackedScene MachineGunAttackScene = LoadScene(AttackPath, "machine_gun_attack.tscn");
+    private static readonly PackedScene RailGunAttackScene = LoadScene(AttackPath, "rail_gun_attack.tscn");
 
     /* Defense Scenes */
     private static readonly PackedScene BasicDefenseScene = LoadScene(DefensePath, "basic_defense.tscn");
@@ -68,6 +69,7 @@ public static class ComponentUtils
 
         /** Attack Component Types **/
         MachineGunAttack,
+        RailGunAttack,
         ContactAttack,
         AreaAttack,
 
@@ -95,6 +97,7 @@ public static class ComponentUtils
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
         ComponentType.MachineGunAttack,
+        ComponentType.RailGunAttack,
     };
 
     private static readonly List<ComponentType> DefenseComponentTypes = new()
@@ -127,6 +130,7 @@ public static class ComponentUtils
         { ComponentType.ContactAttack, ContactAttackScene },
         { ComponentType.AreaAttack, AreaAttackScene },
         { ComponentType.MachineGunAttack, MachineGunAttackScene },
+        { ComponentType.RailGunAttack, RailGunAttackScene },
 
         // Defense Component Types
         { ComponentType.BasicDefense, BasicDefenseScene },

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3usdwphgh6s5"]
+
+[ext_resource type="Texture2D" uid="uid://oc5sxp33aphb" path="res://art/bullet.png" id="1_pps6w"]
+
+[node name="Rail" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(875, 0)
+rotation = 1.5708
+scale = Vector2(10, 250)
+texture = ExtResource("1_pps6w")

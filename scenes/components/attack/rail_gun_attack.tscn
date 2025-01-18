@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://5cswqxrcy3lt"]
+
+[ext_resource type="Script" path="res://scripts/components/attack/RailGunAttack.cs" id="1_vn4gx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg2nk"]
+size = Vector2(7000, 30)
+
+[node name="RailGunAttack" type="Node2D" node_paths=PackedStringArray("_shapeCast", "_shootCooldownTimer", "_railDurationTimer")]
+script = ExtResource("1_vn4gx")
+_shapeCast = NodePath("ShapeCast2D")
+_shootCooldownTimer = NodePath("ShootCooldownTimer")
+_railDurationTimer = NodePath("RailDurationTimer")
+_railDuration = 0.2
+AttackDamage = 10
+AttackCooldown = 2.0
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(3500, 0)
+shape = SubResource("RectangleShape2D_kg2nk")
+target_position = Vector2(50, 0)
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]
+
+[node name="RailDurationTimer" type="Timer" parent="."]

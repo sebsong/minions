@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dfud57bvmappa" path="res://scenes/scrap_storage.tscn" id="3_jpega"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]
-size = Vector2(128, 544)
+size = Vector2(8, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uyeox"]
-size = Vector2(120, 24)
+size = Vector2(30, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66eex"]
 atlas = ExtResource("2_1caxy")
@@ -103,33 +103,32 @@ animations = [{
 }]
 
 [node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("ScrapStorage")]
-scale = Vector2(0.25, 0.25)
 motion_mode = 1
 script = ExtResource("1_e201t")
 ScrapStorage = NodePath("ScrapStorage")
 
 [node name="WingCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, 0)
-scale = Vector2(0.25, 0.25)
+position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_3scxi")
 
 [node name="BodyCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 0)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_uyeox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(8, 8)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8m8gb")
 autoplay = "default"
 frame_progress = 0.283989
 
 [node name="BulletSpawnLeft" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(60, -36)
+position = Vector2(10, -8)
 
 [node name="BulletSpawnRight" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(60, 28)
+position = Vector2(10, 8)
 
 [node name="ScrapStorage" parent="." instance=ExtResource("3_jpega")]
-position = Vector2(-96, 0)
+position = Vector2(-24, 0)
 rotation = 1.5708
+scale = Vector2(0.25, 0.25)
