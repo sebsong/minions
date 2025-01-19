@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4kqycnfquv1k"]
+
+[ext_resource type="Script" path="res://scripts/components/defense/RegenShieldDefense.cs" id="1_b1sx1"]
+[ext_resource type="Texture2D" uid="uid://cnxgflktw7ncv" path="res://art/shield.png" id="2_lc0fo"]
+
+[node name="RegenShieldDefense" type="Node2D" node_paths=PackedStringArray("_regenTimer", "_shieldSprite")]
+script = ExtResource("1_b1sx1")
+_regenTimer = NodePath("RegenTimer")
+_regenTime = 5.0
+_shieldSprite = NodePath("ShieldSprite")
+
+[node name="RegenTimer" type="Timer" parent="."]
+
+[node name="ShieldSprite" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(3, 3)
+texture = ExtResource("2_lc0fo")
