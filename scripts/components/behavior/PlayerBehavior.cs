@@ -20,12 +20,12 @@ public partial class PlayerBehavior : BehaviorComponent
             relativeDirection += Vector2.Right;
         }
 
-        if (Input.IsActionPressed("up"))
+        if (Input.IsActionPressed("forward"))
         {
             relativeDirection += Vector2.Up;
         }
 
-        if (Input.IsActionPressed("down"))
+        if (Input.IsActionPressed("back"))
         {
             relativeDirection += Vector2.Down;
         }

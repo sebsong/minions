@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4rj38f4hokvw"]
+
+[ext_resource type="Script" path="res://scripts/components/movement/BoostMovement.cs" id="1_5hlav"]
+
+[node name="BoostMovement" type="Node2D" node_paths=PackedStringArray("_cooldownTimer")]
+script = ExtResource("1_5hlav")
+_cooldownTimer = NodePath("CooldownTimer")
+_boostCooldown = 2.0
+_boostVelocityDecay = 10.0
+Speed = 1000.0
+TurnSpeed = 200.0
+
+[node name="CooldownTimer" type="Timer" parent="."]
