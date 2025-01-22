@@ -48,15 +48,15 @@ public partial class BoostMovement : MovementComponent
         Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
         Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
         GetComponentOwner().LookAt(lookAtTarget);
-        Vector2 relativeDirectionToTarget = GetComponentOwner().GlobalPosition.DirectionTo(targetLocation);
+        
+        Vector2 relativeDirectionToTarget = GetComponentOwner().ToLocal(targetLocation).Normalized();
 
-        if (IsLookingAtTarget(relativeDirectionToTarget) && TargetIsAhead(targetLocation) && _canBoost)
+        if (relativeDirectionToTarget.Length() > .1 && IsLookingAtTarget(relativeDirectionToTarget) && _canBoost)
         {
-            GD.Print(relativeDirectionToTarget);
-            Boost(relativeDirectionToTarget);
+            Boost();
         }
 
-        _currentVelocity = relativeDirectionToTarget * GetDecayedVelocityLength(delta);
+        _currentVelocity = GetComponentOwner().GlobalTransform.X * GetDecayedVelocityLength(delta);
         return _currentVelocity;
     }
 
@@ -66,12 +66,7 @@ public partial class BoostMovement : MovementComponent
 
     private bool IsLookingAtTarget(Vector2 relativeDirectionToTarget)
     {
-        return Vector2.Right.AngleTo(relativeDirectionToTarget) <= 1;
-    }
-
-    private bool TargetIsAhead(Vector2 targetLocation)
-    {
-        return GetComponentOwner().ToLocal(targetLocation).X >= 1;
+        return Vector2.Right.AngleTo(relativeDirectionToTarget) <= .1;
     }
 
     private float GetDecayedVelocityLength(double delta)
@@ -79,12 +74,10 @@ public partial class BoostMovement : MovementComponent
         return Mathf.Max(0, _currentVelocity.Length() - (float)(_boostVelocityDecay * delta));
     }
 
-    private void Boost(Vector2 relativeDirectionToTarget)
+    private void Boost()
     {
-        GD.Print("BOOST");
         _canBoost = false;
-        _currentVelocity = relativeDirectionToTarget * Speed;
-        GD.Print(_currentVelocity);
+        _currentVelocity = GetComponentOwner().GlobalTransform.X * Speed;
         _cooldownTimer.Start();
     }
 
