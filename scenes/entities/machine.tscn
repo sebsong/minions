@@ -123,10 +123,10 @@ autoplay = "default"
 frame_progress = 0.283989
 
 [node name="BulletSpawnLeft" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(12, -8)
+position = Vector2(10, -7)
 
 [node name="BulletSpawnRight" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(12, 8)
+position = Vector2(10, 7)
 
 [node name="ScrapStorage" parent="." instance=ExtResource("3_jpega")]
 position = Vector2(-24, 0)

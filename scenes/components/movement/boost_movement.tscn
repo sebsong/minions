@@ -7,7 +7,7 @@ script = ExtResource("1_5hlav")
 _cooldownTimer = NodePath("CooldownTimer")
 _boostCooldown = 0.5
 _boostVelocityDecay = 500.0
-Speed = 500.0
+Speed = 1000.0
 TurnSpeed = 200.0
 
 [node name="CooldownTimer" type="Timer" parent="."]

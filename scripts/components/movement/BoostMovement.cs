@@ -27,17 +27,17 @@ public partial class BoostMovement : MovementComponent
         Vector2 relativeTargetLocation = Vector2.Zero;
         if (direction == Vector2.Left)
         {
-            relativeTargetLocation = Vector2.Up;
+            relativeTargetLocation += Vector2.Up;
         }
 
         if (direction == Vector2.Right)
         {
-            relativeTargetLocation = Vector2.Down;
+            relativeTargetLocation += Vector2.Down;
         }
 
         if (direction == Vector2.Up)
         {
-            relativeTargetLocation = Vector2.Right;
+            relativeTargetLocation += Vector2.Right;
         }
 
         return GetVelocityForTargetLocation(GetComponentOwner().ToGlobal(relativeTargetLocation), delta);
@@ -45,12 +45,9 @@ public partial class BoostMovement : MovementComponent
 
     protected override Vector2 GetVelocityForTargetLocation(Vector2 targetLocation, double delta)
     {
-        Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
-        Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
-        GetComponentOwner().LookAt(lookAtTarget);
-        
-        Vector2 relativeDirectionToTarget = GetComponentOwner().ToLocal(targetLocation).Normalized();
+        RotateTowardsTarget(targetLocation, delta);
 
+        Vector2 relativeDirectionToTarget = GetComponentOwner().ToLocal(targetLocation).Normalized();
         if (relativeDirectionToTarget.Length() > .1 && IsLookingAtTarget(relativeDirectionToTarget) && _canBoost)
         {
             Boost();
@@ -63,10 +60,17 @@ public partial class BoostMovement : MovementComponent
     public override void OnCollision(KinematicCollision2D collision)
     {
     }
+    
+    private void RotateTowardsTarget(Vector2 targetLocation, double delta)
+    {
+        Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
+        Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
+        GetComponentOwner().LookAt(lookAtTarget);
+    }
 
     private bool IsLookingAtTarget(Vector2 relativeDirectionToTarget)
     {
-        return Vector2.Right.AngleTo(relativeDirectionToTarget) <= .1;
+        return Mathf.Abs(Vector2.Right.AngleTo(relativeDirectionToTarget)) <= .01;
     }
 
     private float GetDecayedVelocityLength(double delta)

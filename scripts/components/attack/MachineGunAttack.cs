@@ -42,15 +42,7 @@ public partial class MachineGunAttack : AttackComponent
     {
         if (_canShoot && _currentBulletSpawnIndex != -1)
         {
-            Bullet bullet = _bulletScene.Instantiate<Bullet>();
-            bullet.Shooter = GetComponentOwner();
-            bullet.Speed = AttackSpeed;
-            bullet.Damage = AttackDamage;
-            Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];
-            bullet.Position = bulletSpawn.GlobalPosition;
-            float randomBulletSpread = _rng.RandfRange(-_maxBulletSpread, _maxBulletSpread);
-            bullet.Rotation = bulletSpawn.GlobalRotation + randomBulletSpread;
-            GetTree().CurrentScene.AddChild(bullet);
+            SpawnBullet();
 
             _canShoot = false;
             _shootCooldownTimer.Start();
@@ -60,6 +52,21 @@ public partial class MachineGunAttack : AttackComponent
 
     public override void OnCollision(KinematicCollision2D collision)
     {
+    }
+
+    private void SpawnBullet()
+    {
+        Bullet bullet = _bulletScene.Instantiate<Bullet>();
+        
+        bullet.Shooter = GetComponentOwner();
+        bullet.Speed = AttackSpeed;
+        bullet.Damage = AttackDamage;
+        Node2D bulletSpawn = _bulletSpawns[_currentBulletSpawnIndex];
+        bullet.Position = bulletSpawn.GlobalPosition;
+        float randomBulletSpread = _rng.RandfRange(-_maxBulletSpread, _maxBulletSpread);
+        bullet.Rotation = bulletSpawn.GlobalRotation + randomBulletSpread;
+        
+        GetTree().CurrentScene.AddChild(bullet);
     }
 
     private void OnShootCooldownTimerTimeout()
