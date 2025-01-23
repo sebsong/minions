@@ -24,21 +24,7 @@ public partial class BoostMovement : MovementComponent
 
     protected override Vector2 GetVelocityForInputDirection(Vector2 direction, double delta)
     {
-        Vector2 relativeTargetLocation = Vector2.Zero;
-        if (direction == Vector2.Left)
-        {
-            relativeTargetLocation += Vector2.Up;
-        }
-
-        if (direction == Vector2.Right)
-        {
-            relativeTargetLocation += Vector2.Down;
-        }
-
-        if (direction == Vector2.Up)
-        {
-            relativeTargetLocation += Vector2.Right;
-        }
+        Vector2 relativeTargetLocation = direction.Rotated(Mathf.Pi / 2);
 
         return GetVelocityForTargetLocation(GetComponentOwner().ToGlobal(relativeTargetLocation), delta);
     }
@@ -70,7 +56,7 @@ public partial class BoostMovement : MovementComponent
 
     private bool IsLookingAtTarget(Vector2 relativeDirectionToTarget)
     {
-        return Mathf.Abs(Vector2.Right.AngleTo(relativeDirectionToTarget)) <= .01;
+        return Mathf.Abs(Vector2.Right.AngleTo(relativeDirectionToTarget)) < Mathf.Pi / 4;
     }
 
     private float GetDecayedVelocityLength(double delta)

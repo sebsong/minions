@@ -5,7 +5,7 @@
 [node name="BoostMovement" type="Node2D" node_paths=PackedStringArray("_cooldownTimer")]
 script = ExtResource("1_5hlav")
 _cooldownTimer = NodePath("CooldownTimer")
-_boostCooldown = 0.5
+_boostCooldown = 3.0
 _boostVelocityDecay = 500.0
 Speed = 1000.0
 TurnSpeed = 200.0
