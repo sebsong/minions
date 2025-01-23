@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bu4htfbfbte2d"]
+[gd_scene load_steps=19 format=3 uid="uid://dpo16bk8er14u"]
 
 [ext_resource type="Script" path="res://scripts/components/core/Machine.cs" id="1_e201t"]
 [ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_1caxy"]
-[ext_resource type="PackedScene" path="res://scenes/scrap_storage.tscn" id="3_jpega"]
+[ext_resource type="PackedScene" uid="uid://dfud57bvmappa" path="res://scenes/scrap_storage.tscn" id="3_jpega"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]
 size = Vector2(8, 34)
@@ -123,10 +123,10 @@ autoplay = "default"
 frame_progress = 0.283989
 
 [node name="BulletSpawnLeft" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(12, -8)
+position = Vector2(10, -7)
 
 [node name="BulletSpawnRight" type="Node2D" parent="." groups=["bulletSpawns"]]
-position = Vector2(12, 8)
+position = Vector2(10, 7)
 
 [node name="ScrapStorage" parent="." instance=ExtResource("3_jpega")]
 position = Vector2(-24, 0)

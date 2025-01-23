@@ -18,16 +18,7 @@ public partial class GlideMovement : MovementComponent
 
     protected override Vector2 GetVelocityForInputDirection(Vector2 direction, double delta)
     {
-        Vector2 relativeTargetLocation = Vector2.Zero;
-        if (direction == Vector2.Left)
-        {
-            relativeTargetLocation = Vector2.Up;
-        }
-
-        if (direction == Vector2.Right)
-        {
-            relativeTargetLocation = Vector2.Down;
-        }
+        Vector2 relativeTargetLocation = direction.Rotated(Mathf.Pi / 2);
 
         return GetVelocityForTargetLocation(GetComponentOwner().ToGlobal(relativeTargetLocation), delta);
     }

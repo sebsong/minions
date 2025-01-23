@@ -30,7 +30,7 @@ public partial class Bullet : Node2D
 
 	private void OnHitBoxBodyEntered(Node2D body)
 	{
-		if (body is IDamageable damageable)
+		if (body is IDamageable damageable && body != Shooter)
 		{
 			damageable.TakeDamage(Damage, Shooter);
 			Explode();
