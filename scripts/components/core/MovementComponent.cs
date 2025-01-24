@@ -38,5 +38,11 @@ public abstract partial class MovementComponent : Component
         );
         return toRotate.Rotated(Math.Sign(angleToDestination) * amountToTurn);
     }
-
+    
+    protected void RotateTowardsTarget(Vector2 targetLocation, double delta)
+    {
+        Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
+        Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
+        GetComponentOwner().LookAt(lookAtTarget);
+    }
 }

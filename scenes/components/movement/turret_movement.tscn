@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxwoam2g4qb8"]
+
+[ext_resource type="Script" path="res://scripts/components/movement/TurretMovement.cs" id="1_evua1"]
+
+[node name="TurretMovement" type="Node2D"]
+script = ExtResource("1_evua1")
+TurnSpeed = 350.0

@@ -47,12 +47,6 @@ public partial class BoostMovement : MovementComponent
     {
     }
     
-    private void RotateTowardsTarget(Vector2 targetLocation, double delta)
-    {
-        Vector2 relativeDirection = GetRotatedDirection(Vector2.Right, targetLocation, delta);
-        Vector2 lookAtTarget = GetComponentOwner().ToGlobal(relativeDirection);
-        GetComponentOwner().LookAt(lookAtTarget);
-    }
 
     private bool IsLookingAtTarget(Vector2 relativeDirectionToTarget)
     {

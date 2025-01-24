@@ -21,6 +21,7 @@ public static class ComponentUtils
     private static readonly PackedScene GlideMovementScene = LoadScene(MovementPath, "glide_movement.tscn");
     private static readonly PackedScene HoverMovementScene = LoadScene(MovementPath, "hover_movement.tscn");
     private static readonly PackedScene BoostMovementScene = LoadScene(MovementPath, "boost_movement.tscn");
+    private static readonly PackedScene TurretMovementScene = LoadScene(MovementPath, "turret_movement.tscn");
 
     /* Attack Scenes */
     private static readonly PackedScene ContactAttackScene = LoadScene(AttackPath, "contact_attack.tscn");
@@ -68,6 +69,7 @@ public static class ComponentUtils
         GlideMovement,
         HoverMovement,
         BoostMovement,
+        TurretMovement,
 
         /** Attack Component Types **/
         MachineGunAttack,
@@ -94,6 +96,7 @@ public static class ComponentUtils
         ComponentType.GlideMovement,
         ComponentType.HoverMovement,
         ComponentType.BoostMovement,
+        ComponentType.TurretMovement,
     };
 
     private static readonly List<ComponentType> AttackComponentTypes = new()
@@ -131,6 +134,7 @@ public static class ComponentUtils
         { ComponentType.GlideMovement, GlideMovementScene },
         { ComponentType.HoverMovement, HoverMovementScene },
         { ComponentType.BoostMovement, BoostMovementScene },
+        { ComponentType.TurretMovement, TurretMovementScene },
 
         // Attack Component Types
         { ComponentType.ContactAttack, ContactAttackScene },
