@@ -31,17 +31,18 @@ public partial class Machine : CharacterBody2D, IDamageable
         base._Process(delta);
         LocationInput locationInput = _behaviorComponent?.GetLocationInput(delta) ??
                                       new LocationInput(false, ComponentUtils.IdleTargetLocation);
-        Velocity = _movementComponent.GetVelocity(locationInput, delta);
+        Velocity = _movementComponent?.GetVelocity(locationInput, delta) ?? Vector2.Zero;
         if (_behaviorComponent != null && _behaviorComponent.ShouldAttack(delta))
         {
-            _attackComponent.Attack();
+            _attackComponent?.Attack();
         }
 
         if (MoveAndSlide())
         {
             KinematicCollision2D collision = GetLastSlideCollision();
-            _movementComponent.OnCollision(collision);
-            _attackComponent.OnCollision(collision);
+            _behaviorComponent?.OnCollision(collision);
+            _movementComponent?.OnCollision(collision);
+            _attackComponent?.OnCollision(collision);
         }
     }
 

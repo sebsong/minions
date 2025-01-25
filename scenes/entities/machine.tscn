@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/components/core/Machine.cs" id="1_e201t"]
 [ext_resource type="Texture2D" uid="uid://b6gs0pq17rh0v" path="res://art/plane.png" id="2_1caxy"]
-[ext_resource type="PackedScene" path="res://scenes/scrap_storage.tscn" id="3_jpega"]
+[ext_resource type="PackedScene" uid="uid://dfud57bvmappa" path="res://scenes/entities/scrap_storage.tscn" id="3_jpega"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3scxi"]
 size = Vector2(8, 34)
@@ -102,7 +102,7 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("ScrapStorage")]
+[node name="Machine" type="CharacterBody2D" node_paths=PackedStringArray("ScrapStorage") groups=["minions"]]
 motion_mode = 1
 script = ExtResource("1_e201t")
 ScrapStorage = NodePath("ScrapStorage")

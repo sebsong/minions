@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfud57bvmappa"]
 
-[ext_resource type="Script" path="res://scripts/ScrapStorage.cs" id="1_ftnxo"]
+[ext_resource type="Script" path="res://scripts/entities/ScrapStorage.cs" id="1_ftnxo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jnnmp"]
 radius = 31.0161

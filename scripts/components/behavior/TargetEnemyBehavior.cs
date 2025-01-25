@@ -9,7 +9,7 @@ public partial class TargetEnemyBehavior : BehaviorComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.TargetEnemyBehavior;
 
-    private entities.Enemy _enemyTarget;
+    private Machine _enemyTarget;
 
     public override LocationInput GetLocationInput(double delta)
     {
@@ -48,14 +48,14 @@ public partial class TargetEnemyBehavior : BehaviorComponent
 
     private void UpdateEnemyTarget()
     {
-        Array<Node> allEnemies = GetTree().GetNodesInGroup("enemies");
-        if (allEnemies.Count == 0)
+        Array<Node> enemies = GetEnemies();
+        if (enemies.Count == 0)
         {
             _enemyTarget = null;
         }
         else
         {
-            _enemyTarget = allEnemies.PickRandom() as entities.Enemy;
+            _enemyTarget = enemies.PickRandom() as Machine;
         }
     }
 }

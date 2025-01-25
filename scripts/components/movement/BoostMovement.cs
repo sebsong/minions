@@ -31,6 +31,11 @@ public partial class BoostMovement : MovementComponent
 
     protected override Vector2 GetVelocityForTargetLocation(Vector2 targetLocation, double delta)
     {
+        if (IsIdleTargetLocation(targetLocation))
+        {
+            targetLocation = GetComponentOwner().ToGlobal(Vector2.Down);
+        }
+        
         RotateTowardsTarget(targetLocation, delta);
 
         Vector2 relativeDirectionToTarget = GetComponentOwner().ToLocal(targetLocation).Normalized();

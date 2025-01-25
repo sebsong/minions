@@ -12,7 +12,7 @@ public partial class FollowAllyBehavior : BehaviorComponent
 
     [Export] private float _followDistance;
 
-    private Minion _allyTarget;
+    private Machine _allyTarget;
 
     public override void _Ready()
     {
@@ -32,7 +32,9 @@ public partial class FollowAllyBehavior : BehaviorComponent
             return new LocationInput(false, ComponentUtils.IdleTargetLocation);
         }
 
-        return new LocationInput(false, _allyTarget.Position); // TODO: follow distance
+        Vector2 targetLocation = _allyTarget.GlobalPosition - (_allyTarget.GlobalTransform.X * _followDistance);
+
+        return new LocationInput(false, targetLocation);
     }
 
     public override bool ShouldAttack(double delta)
@@ -46,16 +48,14 @@ public partial class FollowAllyBehavior : BehaviorComponent
 
     private void UpdateAllyTarget()
     {
-        Array<Node> allMinions = GetTree().GetNodesInGroup("minions");
-        allMinions.Remove(GetComponentOwner());
-        if (allMinions.Count == 0)
+        Array<Node> allies = GetAllies();
+        if (allies.Count == 0)
         {
             _allyTarget = null;
         }
         else
         {
-            _allyTarget = allMinions.PickRandom() as Minion;
+            _allyTarget = allies.PickRandom() as Machine;
         }
     }
-
 }
