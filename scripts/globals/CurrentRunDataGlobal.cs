@@ -11,8 +11,6 @@ public partial class CurrentRunDataGlobal : Node
 
     public int Scrap;
 
-    public int MaxFleetSize = 9; // TODO: get this from save file
-
     public List<ComponentConfiguration> FleetConfigurations { get; } = new();
 
     public override void _Ready()
@@ -24,8 +22,8 @@ public partial class CurrentRunDataGlobal : Node
     public void AddConfiguration(ComponentConfiguration componentConfiguration)
     {
         Debug.Assert(
-            FleetConfigurations.Count < MaxFleetSize,
-            $"Too many configurations: {FleetConfigurations.Count} for the max fleet size: {MaxFleetSize}"
+            FleetConfigurations.Count < SaveDataGlobal.Instance.MaxFleetSize,
+            $"Too many configurations: {FleetConfigurations.Count} for the max fleet size: {SaveDataGlobal.Instance.MaxFleetSize}"
         );
         FleetConfigurations.Add(componentConfiguration);
     }

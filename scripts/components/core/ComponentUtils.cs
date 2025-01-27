@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 namespace minions.scripts.components.core;
 
@@ -83,7 +83,7 @@ public static class ComponentUtils
         RegenShieldDefense,
     }
 
-    private static readonly List<ComponentType> BehaviorComponentTypes = new()
+    private static readonly Array<ComponentType> BehaviorComponentTypes = new()
     {
         ComponentType.PlayerBehavior,
         ComponentType.RandomBehavior,
@@ -91,7 +91,7 @@ public static class ComponentUtils
         ComponentType.FollowAllyBehavior,
     };
 
-    private static readonly List<ComponentType> MovementComponentTypes = new()
+    private static readonly Array<ComponentType> MovementComponentTypes = new()
     {
         ComponentType.GlideMovement,
         ComponentType.HoverMovement,
@@ -99,7 +99,7 @@ public static class ComponentUtils
         ComponentType.TurretMovement,
     };
 
-    private static readonly List<ComponentType> AttackComponentTypes = new()
+    private static readonly Array<ComponentType> AttackComponentTypes = new()
     {
         ComponentType.ContactAttack,
         ComponentType.AreaAttack,
@@ -107,14 +107,14 @@ public static class ComponentUtils
         ComponentType.RailGunAttack,
     };
 
-    private static readonly List<ComponentType> DefenseComponentTypes = new()
+    private static readonly Array<ComponentType> DefenseComponentTypes = new()
     {
         ComponentType.BasicDefense,
         ComponentType.InvincibleDefense,
         ComponentType.RegenShieldDefense
     };
 
-    public static readonly Dictionary<ComponentCategory, List<ComponentType>> ComponentCategoryToType = new()
+    public static readonly Dictionary<ComponentCategory, Array<ComponentType>> ComponentCategoryToType = new()
     {
         {ComponentCategory.Behavior, BehaviorComponentTypes},
         {ComponentCategory.Movement, MovementComponentTypes},

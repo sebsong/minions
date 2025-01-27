@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkkkbcmwgltey"]
+[gd_scene load_steps=5 format=3 uid="uid://bkkkbcmwgltey"]
 
 [ext_resource type="Script" path="res://scripts/entities/Enemy.cs" id="1_1lmc1"]
 [ext_resource type="Texture2D" uid="uid://bbb1sjykhw0rb" path="res://icon.svg" id="1_4g35n"]
+[ext_resource type="PackedScene" path="res://scenes/entities/scrap_storage.tscn" id="3_4xkou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq5ul"]
 size = Vector2(128, 128)
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("ScrapStorage") groups=["enemies"]]
 scale = Vector2(0.5, 0.5)
 motion_mode = 1
 script = ExtResource("1_1lmc1")
+ScrapStorage = NodePath("ScrapStorage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jq5ul")
@@ -24,3 +26,5 @@ debug_color = Color(0.97362, 0, 0.432687, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.932852, 0.0677829, 0, 1)
 texture = ExtResource("1_4g35n")
+
+[node name="ScrapStorage" parent="." instance=ExtResource("3_4xkou")]

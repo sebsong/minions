@@ -20,9 +20,6 @@ public partial class Machine : CharacterBody2D, IDamageable
         base._Ready();
         ScrapStorage.OnScrapDepleted += OnScrapDepleted;
         ScrapStorage.OnScrapFinalBlow += Die;
-        SetComponentsFromConfiguration(
-            CurrentRunDataGlobal.Instance.FleetConfigurations[FleetIndex]
-        );
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,7 +64,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         QueueFree();
     }
 
-    protected void SetComponentsFromConfiguration(ComponentConfiguration configuration)
+    public void SetComponentsFromConfiguration(ComponentConfiguration configuration)
     {
         SetBehaviorComponent(configuration.BehaviorComponentType);
         SetMovementComponent(configuration.MovementComponentType);
@@ -75,7 +72,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         SetDefenseComponent(configuration.DefenseComponentType);
     }
 
-    public void SetBehaviorComponent(ComponentUtils.ComponentType componentType)
+    private void SetBehaviorComponent(ComponentUtils.ComponentType componentType)
     {
         _behaviorComponent = ComponentUtils.AttachComponent<BehaviorComponent>(
             this,
@@ -83,7 +80,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         );
     }
 
-    public void SetMovementComponent(ComponentUtils.ComponentType componentType)
+    private void SetMovementComponent(ComponentUtils.ComponentType componentType)
     {
         _movementComponent = ComponentUtils.AttachComponent<MovementComponent>(
             this,
@@ -91,7 +88,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         );
     }
 
-    public void SetAttackComponent(ComponentUtils.ComponentType componentType)
+    private void SetAttackComponent(ComponentUtils.ComponentType componentType)
     {
         _attackComponent = ComponentUtils.AttachComponent<AttackComponent>(
             this,
@@ -99,7 +96,7 @@ public partial class Machine : CharacterBody2D, IDamageable
         );
     }
 
-    public void SetDefenseComponent(ComponentUtils.ComponentType componentType)
+    private void SetDefenseComponent(ComponentUtils.ComponentType componentType)
     {
         _defenseComponent = ComponentUtils.AttachComponent<DefenseComponent>(
             this,
