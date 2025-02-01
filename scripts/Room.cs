@@ -12,12 +12,15 @@ public partial class Room : Node2D
 
     [Export] private GpuParticles2D _cloudParticles;
 
+    [Export] private EnemySpawner _enemySpawner;
     [Export] private Node2D _machineSpawnPoint;
     [Export] private float _spawnTime;
 
     public override void _Ready()
     {
         base._Ready();
+
+        _enemySpawner.AllEnemiesDefeated += ;
 
         _cloudParticles.SpeedScale = 100;
         Tween tween = GetTree().CreateTween();
@@ -51,5 +54,16 @@ public partial class Room : Node2D
         body.Position = _machineSpawnPoint.Position;
         body.FleetIndex = index;
         AddChild(body);
+    }
+
+    private void OnEnemySpawnerAllEnemiesDefeated()
+    {
+        
+    }
+
+    private void AdvanceToNextRoom()
+    {
+        CurrentRunDataGlobal.Instance
+        
     }
 }

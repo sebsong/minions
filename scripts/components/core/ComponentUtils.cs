@@ -144,7 +144,7 @@ public static class ComponentUtils
 
         // Defense Component Types
         { ComponentType.BasicDefense, BasicDefenseScene },
-        { ComponentType.InvincibleDefense, InvincibleDefenseScene },
+        // { ComponentType.InvincibleDefense, InvincibleDefenseScene },
         { ComponentType.RegenShieldDefense, RegenShieldDefenseScene },
     };
 

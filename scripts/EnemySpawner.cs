@@ -10,27 +10,39 @@ public partial class EnemySpawner : Node2D
 {
     private PackedScene _enemyScene = ResourceLoader.Load<PackedScene>("res://scenes/entities/enemy.tscn");
 
+    [Signal]
+    public delegate void AllEnemiesDefeatedEventHandler();
+
     [Export] private Timer _spawnTimer;
     [Export] private float _spawnTime;
     [Export] private Array<Node2D> _spawnPoints = new();
 
     private int _spawnPointIndex;
-    private int _totalNumEnemies;
+    private int _maxNumEnemies;
+    private int _numSpawnedEnemies;
+    private int _currentNumEnemies;
     private HashSet<Enemy> _enemies = new();
 
     public override void _Ready()
     {
         base._Ready();
-        _totalNumEnemies = GetNumberOfEnemies();
+        _maxNumEnemies = GetNumberOfEnemies();
+        _currentNumEnemies = _maxNumEnemies;
         _spawnTimer.WaitTime = _spawnTime;
         _spawnTimer.Timeout += OnSpawnTimerTimeout;
         _spawnTimer.OneShot = true;
         _spawnTimer.Start();
     }
+    
+    private int GetNumberOfEnemies()
+    {
+        //TODO: randomize based on room #
+        return 3;
+    }
 
     private void OnSpawnTimerTimeout()
     {
-        if (_enemies.Count < _totalNumEnemies)
+        if (_numSpawnedEnemies < _maxNumEnemies)
         {
             SpawnEnemy();
             _spawnTimer.Start();
@@ -44,6 +56,7 @@ public partial class EnemySpawner : Node2D
         enemy.Position = _spawnPoints[_spawnPointIndex++].Position;
         enemy.SetComponentsFromConfiguration(GetConfiguration());
         GetTree().CurrentScene.AddChild(enemy);
+        _numSpawnedEnemies++;
     }
 
     private ComponentConfiguration GetConfiguration()
@@ -57,9 +70,13 @@ public partial class EnemySpawner : Node2D
         );
     }
 
-    private int GetNumberOfEnemies()
+    private void OnEnemyDied()
     {
-        //TODO: randomize based on room #
-        return 3;
+        _currentNumEnemies--;
+        if (_currentNumEnemies == 0)
+        {
+            EmitSignal(SignalName.AllEnemiesDefeated);
+        }
     }
+
 }
