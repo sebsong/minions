@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://iyqer7d3ycl1"]
+
+[ext_resource type="Script" path="res://scripts/globals/SceneManager.cs" id="1_l61la"]
+[ext_resource type="PackedScene" uid="uid://b2fkpi50lmyfy" path="res://scenes/room.tscn" id="2_ch7qk"]
+[ext_resource type="PackedScene" uid="uid://bkkkbcmwgltey" path="res://scenes/entities/enemy.tscn" id="3_7q3d0"]
+[ext_resource type="PackedScene" uid="uid://bc7y42uclg8ra" path="res://scenes/entities/bullet.tscn" id="3_mdy8v"]
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_l61la")
+RoomScene = ExtResource("2_ch7qk")
+EnemyScene = ExtResource("3_7q3d0")
+BulletScene = ExtResource("3_mdy8v")

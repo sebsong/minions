@@ -6,6 +6,9 @@ namespace minions.scripts.components.core;
 
 public partial class Machine : CharacterBody2D, IDamageable
 {
+    [Signal]
+    public delegate void DiedEventHandler();
+    
     [Export] public ScrapStorage ScrapStorage;
 
     public int FleetIndex;
@@ -61,6 +64,7 @@ public partial class Machine : CharacterBody2D, IDamageable
     private void Die()
     {
         AudioManagerGlobal.Instance.ExplodeAudio.Play();
+        EmitSignal(SignalName.Died);
         QueueFree();
     }
 

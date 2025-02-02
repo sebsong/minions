@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="2_oa5yw"]
 [ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="3_5cmdk"]
 [ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="4_3yvj5"]
-[ext_resource type="PackedScene" uid="uid://cpyoiupdfyd27" path="res://scenes/enemy_spawner.tscn" id="5_0yv14"]
+[ext_resource type="PackedScene" uid="uid://cpyoiupdfyd27" path="res://scenes/enemy_manager.tscn" id="5_0yv14"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k5jj"]
 particle_flag_disable_z = true
@@ -17,26 +17,30 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 6.0
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_machineSpawnPoint")]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_enemyManager", "_machineSpawnPoint", "_roomNumberLabel")]
 script = ExtResource("1_l6u58")
 _cloudParticles = NodePath("CloudParticles")
+_enemyManager = NodePath("EnemyManager")
 _machineSpawnPoint = NodePath("MachineSpawnPoint")
 _spawnTime = 1.0
+_roomNumberLabel = NodePath("Control/RoomNumber")
 
-[node name="wall" parent="." instance=ExtResource("2_oa5yw")]
+[node name="Walls" type="Node" parent="."]
+
+[node name="wall" parent="Walls" instance=ExtResource("2_oa5yw")]
 position = Vector2(-21, 678)
 scale = Vector2(0.43, 15)
 
-[node name="wall2" parent="." instance=ExtResource("2_oa5yw")]
+[node name="wall2" parent="Walls" instance=ExtResource("2_oa5yw")]
 position = Vector2(1620, 419)
 scale = Vector2(0.43, 15)
 
-[node name="wall3" parent="." instance=ExtResource("2_oa5yw")]
+[node name="wall3" parent="Walls" instance=ExtResource("2_oa5yw")]
 position = Vector2(714, 919)
 rotation = 1.5708
 scale = Vector2(0.43, 20)
 
-[node name="wall4" parent="." instance=ExtResource("2_oa5yw")]
+[node name="wall4" parent="Walls" instance=ExtResource("2_oa5yw")]
 position = Vector2(894, -18)
 rotation = 1.5708
 scale = Vector2(0.43, 20)
@@ -62,17 +66,49 @@ position = Vector2(800, 450)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
-[node name="EnemySpawner" parent="." node_paths=PackedStringArray("_spawnPoints") instance=ExtResource("5_0yv14")]
+[node name="EnemyManager" parent="." node_paths=PackedStringArray("_spawnPoints") instance=ExtResource("5_0yv14")]
+position = Vector2(74.2939, 30.1897)
 _spawnPoints = [NodePath("SpawnPoint0"), NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
 
-[node name="SpawnPoint0" type="Node2D" parent="EnemySpawner"]
-position = Vector2(186, 153)
+[node name="SpawnPoint0" type="Node2D" parent="EnemyManager"]
+position = Vector2(111.706, 122.81)
 
-[node name="SpawnPoint1" type="Node2D" parent="EnemySpawner"]
-position = Vector2(1388, 151)
+[node name="SpawnPoint1" type="Node2D" parent="EnemyManager"]
+position = Vector2(1313.71, 120.81)
 
-[node name="SpawnPoint2" type="Node2D" parent="EnemySpawner"]
-position = Vector2(195, 681)
+[node name="SpawnPoint2" type="Node2D" parent="EnemyManager"]
+position = Vector2(120.706, 650.81)
 
-[node name="SpawnPoint3" type="Node2D" parent="EnemySpawner"]
-position = Vector2(1348, 717)
+[node name="SpawnPoint3" type="Node2D" parent="EnemyManager"]
+position = Vector2(1273.71, 686.81)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 752.0
+offset_top = 418.0
+offset_right = 752.0
+offset_bottom = 418.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomNumber" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 701.0
+offset_top = 369.0
+offset_right = 847.0
+offset_bottom = 472.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

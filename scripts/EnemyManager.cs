@@ -3,34 +3,44 @@ using Godot;
 using Godot.Collections;
 using minions.scripts.components.core;
 using minions.scripts.entities;
+using minions.scripts.globals;
 
 namespace minions.scripts;
 
-public partial class EnemySpawner : Node2D
+public partial class EnemyManager : Node2D
 {
-    private PackedScene _enemyScene = ResourceLoader.Load<PackedScene>("res://scenes/entities/enemy.tscn");
+    [Signal]
+    public delegate void AllEnemiesDefeatedEventHandler();
 
     [Export] private Timer _spawnTimer;
     [Export] private float _spawnTime;
     [Export] private Array<Node2D> _spawnPoints = new();
 
     private int _spawnPointIndex;
-    private int _totalNumEnemies;
+    private int _numEnemiesToSpawn;
+    private int _numSpawnedEnemies;
     private HashSet<Enemy> _enemies = new();
 
     public override void _Ready()
     {
         base._Ready();
-        _totalNumEnemies = GetNumberOfEnemies();
+        _numEnemiesToSpawn = CalculateNumberOfEnemiesToSpawn();
+        
         _spawnTimer.WaitTime = _spawnTime;
         _spawnTimer.Timeout += OnSpawnTimerTimeout;
         _spawnTimer.OneShot = true;
         _spawnTimer.Start();
     }
+    
+    private int CalculateNumberOfEnemiesToSpawn()
+    {
+        //TODO: randomize based on room #
+        return 3;
+    }
 
     private void OnSpawnTimerTimeout()
     {
-        if (_enemies.Count < _totalNumEnemies)
+        if (_numSpawnedEnemies < _numEnemiesToSpawn)
         {
             SpawnEnemy();
             _spawnTimer.Start();
@@ -39,11 +49,13 @@ public partial class EnemySpawner : Node2D
 
     private void SpawnEnemy()
     {
-        Enemy enemy = _enemyScene.Instantiate<Enemy>();
+        Enemy enemy = SceneManager.Instance.EnemyScene.Instantiate<Enemy>();
+        enemy.Died += () => OnEnemyDied(enemy);
         _enemies.Add(enemy);
         enemy.Position = _spawnPoints[_spawnPointIndex++].Position;
         enemy.SetComponentsFromConfiguration(GetConfiguration());
         GetTree().CurrentScene.AddChild(enemy);
+        _numSpawnedEnemies++;
     }
 
     private ComponentConfiguration GetConfiguration()
@@ -57,9 +69,13 @@ public partial class EnemySpawner : Node2D
         );
     }
 
-    private int GetNumberOfEnemies()
+    private void OnEnemyDied(Enemy enemy)
     {
-        //TODO: randomize based on room #
-        return 3;
+        _enemies.Remove(enemy);
+        if (_enemies.Count == 0)
+        {
+            EmitSignal(SignalName.AllEnemiesDefeated);
+        }
     }
+
 }

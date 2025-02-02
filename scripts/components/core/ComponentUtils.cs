@@ -110,7 +110,7 @@ public static class ComponentUtils
     private static readonly Array<ComponentType> DefenseComponentTypes = new()
     {
         ComponentType.BasicDefense,
-        ComponentType.InvincibleDefense,
+        // ComponentType.InvincibleDefense,
         ComponentType.RegenShieldDefense
     };
 

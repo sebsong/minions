@@ -9,8 +9,8 @@ public partial class CurrentRunDataGlobal : Node
 {
     public static CurrentRunDataGlobal Instance;
 
+    public int RoomNumber = 1;
     public int Scrap;
-
     public List<ComponentConfiguration> FleetConfigurations { get; } = new();
 
     public override void _Ready()
