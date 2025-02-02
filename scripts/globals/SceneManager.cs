@@ -20,6 +20,5 @@ public partial class SceneManager : Node2D
     public void ChangeScene(PackedScene scene)
     {
         GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToPacked, scene);
-        // GetTree().ChangeSceneToPacked(scene);
     }
 }
