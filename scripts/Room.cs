@@ -1,5 +1,4 @@
 using Godot;
-using minions.scripts.components.core;
 using minions.scripts.entities;
 using minions.scripts.globals;
 
@@ -12,15 +11,19 @@ public partial class Room : Node2D
 
     [Export] private GpuParticles2D _cloudParticles;
 
-    [Export] private EnemySpawner _enemySpawner;
+    [Export] private EnemyManager _enemyManager;
     [Export] private Node2D _machineSpawnPoint;
     [Export] private float _spawnTime;
+    
+    [Export] private Label _roomNumberLabel;
 
     public override void _Ready()
     {
         base._Ready();
 
-        _enemySpawner.AllEnemiesDefeated += ;
+        _roomNumberLabel.Text = CurrentRunDataGlobal.Instance.RoomNumber.ToString();
+
+        _enemyManager.AllEnemiesDefeated += OnEnemyManagerAllEnemiesDefeated;
 
         _cloudParticles.SpeedScale = 100;
         Tween tween = GetTree().CreateTween();
@@ -56,14 +59,14 @@ public partial class Room : Node2D
         AddChild(body);
     }
 
-    private void OnEnemySpawnerAllEnemiesDefeated()
+    private void OnEnemyManagerAllEnemiesDefeated()
     {
-        
+        AdvanceToNextRoom();
     }
 
     private void AdvanceToNextRoom()
     {
-        CurrentRunDataGlobal.Instance
-        
+        CurrentRunDataGlobal.Instance.RoomNumber++;
+        SceneManager.Instance.ChangeScene(SceneManager.Instance.RoomScene);
     }
 }

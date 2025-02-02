@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpyoiupdfyd27"]
+
+[ext_resource type="Script" path="res://scripts/EnemyManager.cs" id="1_rfjq3"]
+
+[node name="EnemyManager" type="Node2D" node_paths=PackedStringArray("_spawnTimer")]
+script = ExtResource("1_rfjq3")
+_spawnTimer = NodePath("SpawnTimer")
+_spawnTime = 1.0
+
+[node name="SpawnTimer" type="Timer" parent="."]

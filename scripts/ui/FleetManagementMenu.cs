@@ -45,7 +45,7 @@ public partial class FleetManagementMenu : Control
             CurrentRunDataGlobal.Instance.AddConfiguration(menu.GetConfiguration());
         }
 
-        GetTree().ChangeSceneToFile("res://scenes/room.tscn");
+        SceneManager.Instance.ChangeScene(SceneManager.Instance.RoomScene);
     }
 
     private void OnSaveButtonPressed()

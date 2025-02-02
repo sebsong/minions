@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Godot;
 using minions.scripts.components.core;
 using minions.scripts.entities;
+using minions.scripts.globals;
 
 namespace minions.scripts.components.attack;
 
@@ -9,7 +10,6 @@ public partial class MachineGunAttack : AttackComponent
 {
     public override ComponentUtils.ComponentType ComponentType => ComponentUtils.ComponentType.MachineGunAttack;
 
-    [Export] private PackedScene _bulletScene = ResourceLoader.Load<PackedScene>("res://scenes/entities/bullet.tscn");
     [Export] private Timer _shootCooldownTimer;
 
     [Export] private float _maxBulletSpread;
@@ -56,8 +56,8 @@ public partial class MachineGunAttack : AttackComponent
 
     private void SpawnBullet()
     {
-        Bullet bullet = _bulletScene.Instantiate<Bullet>();
-        
+        Bullet bullet = SceneManager.Instance.BulletScene.Instantiate<Bullet>();
+
         bullet.Shooter = GetComponentOwner();
         bullet.Speed = AttackSpeed;
         bullet.Damage = AttackDamage;
@@ -65,7 +65,7 @@ public partial class MachineGunAttack : AttackComponent
         bullet.Position = bulletSpawn.GlobalPosition;
         float randomBulletSpread = _rng.RandfRange(-_maxBulletSpread, _maxBulletSpread);
         bullet.Rotation = bulletSpawn.GlobalRotation + randomBulletSpread;
-        
+
         GetTree().CurrentScene.AddChild(bullet);
     }
 

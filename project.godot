@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 AudioManagerGlobal="*res://scenes/globals/audio_manager_global.tscn"
 CurrentRunDataGlobal="*res://scripts/globals/CurrentRunDataGlobal.cs"
 SaveDataGlobal="*res://scripts/globals/SaveDataGlobal.cs"
+SceneManager="*res://scenes/globals/scene_manager.tscn"
 
 [display]
 

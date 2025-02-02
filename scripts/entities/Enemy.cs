@@ -1,3 +1,4 @@
+using Godot;
 using minions.scripts.components.core;
 
 namespace minions.scripts.entities;
