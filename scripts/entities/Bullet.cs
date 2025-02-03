@@ -10,8 +10,8 @@ public partial class Bullet : Node2D
 	[Export] private Sprite2D _bulletSprite;
 	[Export] private GpuParticles2D _bulletExplosion;
 
-	[Export] public float Speed = ComponentUtils.DefaultAttackSpeed;
-	[Export] public int Damage = ComponentUtils.DefaultAttackDamage;
+	public float Speed = ComponentUtils.DefaultAttackSpeed;
+	public int Damage = ComponentUtils.DefaultAttackDamage;
 
 	public Node2D Shooter;
 

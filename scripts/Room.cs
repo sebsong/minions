@@ -6,8 +6,6 @@ namespace minions.scripts;
 
 public partial class Room : Node2D
 {
-    private PackedScene _machineScene =
-        ResourceLoader.Load<PackedScene>("res://scenes/entities/minion.tscn");
     [Export] private Sprite2D _background;
     [Export] private Texture2D _dayTexture;
     [Export] private Texture2D _duskTexture;
@@ -76,7 +74,7 @@ public partial class Room : Node2D
     private void SpawnBodyFromConfiguration(int index)
     {
         //TODO: move to minion spawner class
-        Minion body = _machineScene.Instantiate<Minion>();
+        Minion body = SceneManager.Instance.MinionScene.Instantiate<Minion>();
         body.Position = _machineSpawnPoint.Position;
         body.FleetIndex = index;
         AddChild(body);

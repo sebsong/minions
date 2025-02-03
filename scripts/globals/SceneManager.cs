@@ -6,7 +6,8 @@ public partial class SceneManager : Node2D
 {
     [ExportCategory("Levels")] [Export] public PackedScene RoomScene;
 
-    [ExportCategory("Entities")] [Export] public PackedScene EnemyScene;
+    [ExportCategory("Entities")] [Export] public PackedScene MinionScene;
+    [Export] public PackedScene EnemyScene;
     [Export] public PackedScene BulletScene;
 
     public static SceneManager Instance;

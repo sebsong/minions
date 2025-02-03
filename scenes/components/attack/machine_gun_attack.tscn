@@ -6,6 +6,7 @@
 script = ExtResource("1_66lcm")
 _shootCooldownTimer = NodePath("ShootCooldownTimer")
 _maxBulletSpread = 0.1
-AttackCooldown = 0.15
+AttackCooldown = 0.1
+AttackSpeed = 1500.0
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
