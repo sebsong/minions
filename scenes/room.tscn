@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2fkpi50lmyfy"]
+[gd_scene load_steps=10 format=3 uid="uid://b2fkpi50lmyfy"]
 
 [ext_resource type="Script" path="res://scripts/Room.cs" id="1_l6u58"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="2_oa5yw"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="4_3yvj5"]
 [ext_resource type="Texture2D" uid="uid://d4fpixhwjs43" path="res://art/background_night.png" id="4_utkm4"]
 [ext_resource type="PackedScene" uid="uid://cpyoiupdfyd27" path="res://scenes/enemy_manager.tscn" id="5_0yv14"]
+
+[sub_resource type="Environment" id="Environment_vitgd"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_blend_mode = 0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k5jj"]
 particle_flag_disable_z = true
@@ -30,6 +37,9 @@ _enemyManager = NodePath("EnemyManager")
 _machineSpawnPoint = NodePath("MachineSpawnPoint")
 _spawnTime = 1.0
 _roomNumberLabel = NodePath("Control/RoomNumber")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vitgd")
 
 [node name="Walls" type="Node" parent="."]
 
@@ -118,3 +128,7 @@ theme_override_font_sizes/font_size = 75
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.2
+blend_mode = 1

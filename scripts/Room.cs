@@ -42,6 +42,11 @@ public partial class Room : Node2D
         {
             GetTree().Quit();
         }
+
+        if (Input.IsActionJustPressed("next_room"))
+        {
+            AdvanceToNextRoom();
+        }
     }
 
     private void SetupClouds()

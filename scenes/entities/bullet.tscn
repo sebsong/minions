@@ -29,13 +29,13 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [sub_resource type="Gradient" id="Gradient_hode2"]
-offsets = PackedFloat32Array(0.182482, 0.29562, 0.667883, 0.79562, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.149635, 0.149635, 0.149635, 1, 0.141981, 0.141981, 0.141981, 1, 0.104891, 0.104891, 0.104891, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.248175, 0.635036)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7t74m"]
 gradient = SubResource("Gradient_hode2")
 width = 32
-height = 16
+height = 8
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -47,8 +47,6 @@ script = ExtResource("1_md51j")
 _hitBox = NodePath("HitBox")
 _bulletSprite = NodePath("Sprite2D")
 _bulletExplosion = NodePath("GPUParticles2D")
-Speed = 3000.0
-Damage = 10
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 visible = false
@@ -79,5 +77,6 @@ speed_scale = 5.0
 explosiveness = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.960784, 0.631373, 0.631373, 1)
+color = Color(0.309144, 0.137365, 0.152806, 1)
+energy = 2.0
 texture = SubResource("GradientTexture2D_7t74m")
