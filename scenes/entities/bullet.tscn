@@ -33,6 +33,7 @@ script = ExtResource("1_md51j")
 _hitBox = NodePath("HitBox")
 _bulletSprite = NodePath("Sprite2D")
 _bulletExplosion = NodePath("GPUParticles2D")
+Speed = 3000.0
 
 [node name="HitBox" type="Area2D" parent="."]
 

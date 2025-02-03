@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2fkpi50lmyfy"]
+[gd_scene load_steps=9 format=3 uid="uid://b2fkpi50lmyfy"]
 
 [ext_resource type="Script" path="res://scripts/Room.cs" id="1_l6u58"]
 [ext_resource type="PackedScene" uid="uid://dui7csxstqpw3" path="res://scenes/entities/wall.tscn" id="2_oa5yw"]
-[ext_resource type="Texture2D" uid="uid://ch2k2clmaibej" path="res://art/background.png" id="3_5cmdk"]
+[ext_resource type="Texture2D" uid="uid://dwiqxtd01ih50" path="res://art/background_day.png" id="3_25i4r"]
+[ext_resource type="Texture2D" uid="uid://bg0dt0fwx0nf3" path="res://art/background_dusk.png" id="3_f1dub"]
 [ext_resource type="Texture2D" uid="uid://c61vub2jftcdv" path="res://art/cloud.png" id="4_3yvj5"]
+[ext_resource type="Texture2D" uid="uid://d4fpixhwjs43" path="res://art/background_night.png" id="4_utkm4"]
 [ext_resource type="PackedScene" uid="uid://cpyoiupdfyd27" path="res://scenes/enemy_manager.tscn" id="5_0yv14"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2k5jj"]
@@ -17,8 +19,12 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 6.0
 
-[node name="Room" type="Node2D" node_paths=PackedStringArray("_cloudParticles", "_enemyManager", "_machineSpawnPoint", "_roomNumberLabel")]
+[node name="Room" type="Node2D" node_paths=PackedStringArray("_background", "_cloudParticles", "_enemyManager", "_machineSpawnPoint", "_roomNumberLabel")]
 script = ExtResource("1_l6u58")
+_background = NodePath("Background")
+_dayTexture = ExtResource("3_25i4r")
+_duskTexture = ExtResource("3_f1dub")
+_nightTexture = ExtResource("4_utkm4")
 _cloudParticles = NodePath("CloudParticles")
 _enemyManager = NodePath("EnemyManager")
 _machineSpawnPoint = NodePath("MachineSpawnPoint")
@@ -49,7 +55,7 @@ scale = Vector2(0.43, 20)
 z_index = -2
 position = Vector2(759, 477)
 scale = Vector2(2000, 2000)
-texture = ExtResource("3_5cmdk")
+texture = ExtResource("3_25i4r")
 metadata/_edit_lock_ = true
 
 [node name="CloudParticles" type="GPUParticles2D" parent="."]
