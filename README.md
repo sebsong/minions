@@ -1,5 +1,7 @@
 A prototype game made in Godot featuring customizable, component based ships dog-fighting in the open skies.
 
+Playable build in `minions.zip`
+
 https://github.com/user-attachments/assets/b105aaae-f35d-417a-8b64-d9f56c0318ba
 
 Component Selection Menu
